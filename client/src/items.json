@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Super Dope Bike",
+        "image": "http://www.bikesdirect.com/products/motobecane/road_bikes/mirage-pro-xv-blk-21.jpg",
+        "description": "the dopest bike around"
+    },
+    {
+        "id": 2,
+        "name": "Patrick Star",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png",
+        "description": "spongebob's best friend"
+    }
+]
