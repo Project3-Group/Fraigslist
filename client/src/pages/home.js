@@ -1,18 +1,33 @@
 import React, { Component } from 'react'
+import Card from "../components/Card";
+import items from '../items.json';
 
 class Home extends Component {
+    state = {
+        items,
+    };
 
     render() {
-        const imageStyle = {
-            width: 400
-        }
         return (
-            <div>
-                <p>It's good to be home</p>
-                <img style={imageStyle} alt="home" src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg" />
+            <div className="container">
+                <div className="row">
+                    <div>
+                        <p>It's good to be home</p>
+                        {this.state.items.map(cards => (
+                            <Card
+                                id={cards.id}
+                                key={cards.id}
+                                name={cards.name}
+                                image={cards.image}
+                                description={cards.description}
+
+                            />
+                        ))}
+
+                    </div>
+                </div>
             </div>
         )
-
     }
 }
 
