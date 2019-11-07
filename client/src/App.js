@@ -1,10 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import Signup from './pages/sign-up'
-import LoginForm from './pages/login-form'
-import Home from './pages/home'
+import React, { Component } from 'react';
+import axios from 'axios'
+import { Route } from 'react-router-dom'
+// components
+import Signup from './components/sign-up'
+import LoginForm from './components/login-form'
 import Navbar from './components/navbar'
-import './App.css';
+import Home from './components/home'
 
 class App extends Component {
   state = {
@@ -25,6 +26,7 @@ class App extends Component {
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
+        console.log(response.data.user);
         console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
@@ -72,6 +74,4 @@ class App extends Component {
   }
 }
 
-
 export default App;
-

@@ -9,7 +9,6 @@ class LoginForm extends Component {
         redirectTo: null
     }
 
-
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -21,7 +20,7 @@ class LoginForm extends Component {
         console.log('handleSubmit')
 
         axios
-            .post('/user/login', {
+            .post('/user/', {
                 username: this.state.username,
                 password: this.state.password
             })
