@@ -9,13 +9,13 @@ class LoginForm extends Component {
         redirectTo: null
     }
 
-    handleChange(event) {
+    handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit = event => {
         event.preventDefault()
         console.log('handleSubmit')
 
