@@ -36,6 +36,9 @@ app.use(passport.session()) // calls the deserializeUser
 // Routes
 app.use('/user', user)
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/inventoryList");
+
+
 // Starting Server 
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
