@@ -1,0 +1,11 @@
+.image-group img {
+    margin: 5px;
+    max-height: 200px;
+    max-width: 200px;
+  }
+
+.card {
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
