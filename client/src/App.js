@@ -8,27 +8,20 @@ import Navbar from './components/navbar'
 import Home from './pages/home'
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      loggedIn: false,
-      username: null
-    }
-
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+  state = {
+    loggedIn: false,
+    username: null
   }
 
   componentDidMount() {
     this.getUser()
   }
 
-  updateUser(userObject) {
+  updateUser = userObject => {
     this.setState(userObject)
   }
 
-  getUser() {
+  getUser = () => {
     axios.get('/user/').then(response => {
       console.log('Get user response: ')
       console.log(response.data)
