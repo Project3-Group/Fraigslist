@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
 import Home from './pages/home'
-import Create from './pages/create'
+import addItem from './pages/additem'
 import Navbar from './components/navbar'
 
 class App extends Component {
@@ -57,15 +57,15 @@ class App extends Component {
           exact path="/"
           component={Home} />
         <Route
+          exact path="/addItem"
+          component={addItem} />
+        <Route
           path="/login"
           render={() =>
             <LoginForm
               updateUser={this.updateUser}
             />}
         />
-        <Route
-          exact path="/create"
-          component={Create} />
         <Route
           path="/signup"
           render={() =>
