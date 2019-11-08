@@ -4,8 +4,9 @@ import { Route } from 'react-router-dom'
 // components
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
-import Navbar from './components/navbar'
 import Home from './pages/home'
+import Create from './pages/create'
+import Navbar from './components/navbar'
 
 class App extends Component {
   state = {
@@ -56,6 +57,9 @@ class App extends Component {
         <Route
           exact path="/"
           component={Home} />
+        <Route
+          exact path="/create"
+          component={Create} />
         <Route
           path="/login"
           render={() =>
