@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const routes = require("./routes");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const dbConnection = require('./connection');
@@ -10,6 +11,7 @@ const passport = require('./passport');
 const app = express();
 const PORT = process.env.PORT || 8080;
 // Route requires
+
 const user = require('./routes/api/user')
 
 // MIDDLEWARE
@@ -23,9 +25,6 @@ app.use(bodyParser.json())
 
 //Mongoose DB Connection
 mongoose.Promise = global.Promise
-
-
-
 
 // Sessions
 app.use(
@@ -43,10 +42,11 @@ app.use(passport.session()) // calls the deserializeUser
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 // Routes
+app.use(routes)
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-app.use('/user', user)
+// app.use('/user', user)
 
 
 

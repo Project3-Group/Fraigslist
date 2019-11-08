@@ -21,12 +21,12 @@ const itemsSchema = new Schema({
         required: false,
     },
     quantity: {
-        type: integer,
+        type: String,
         required: true,
     },
     price: {
         // regex for integer + 2 decimals
-        type: integer,
+        type: String,
         required: true,
     },
     itemDescription: {

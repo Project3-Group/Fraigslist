@@ -10,9 +10,7 @@ class AddItem extends Component {
         itemDescription: "",
         company: "",
         inCart: false,
-
     };
-
 
     handleInputChange = event => {
 
@@ -22,8 +20,6 @@ class AddItem extends Component {
         this.setState({
             [name]: value
         })
-
-
     }
 
     handleFormSubmit = event => {
@@ -42,7 +38,7 @@ class AddItem extends Component {
         console.log(newItem);
         // axios
 
-        API.createItem(newItem);
+        API.addItem(newItem);
 
         this.setState(
             {
