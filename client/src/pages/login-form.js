@@ -4,28 +4,22 @@ import axios from 'axios'
 
 
 class LoginForm extends Component {
-    constructor() {
-        super()
-        this.state = {
-            username: '',
-            password: '',
-            redirectTo: null
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-
+    state = {
+        username: '',
+        password: '',
+        redirectTo: null
     }
 
-    handleChange(event) {
+
+    handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit = event => {
         event.preventDefault()
         console.log('handleSubmit')
-
         axios
             .post('/user/', {
                 username: this.state.username,
