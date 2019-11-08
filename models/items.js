@@ -49,18 +49,5 @@ itemsSchema.methods = {
     }
 }
 
-// Define hooks for pre-saving
-itemsSchema.pre('save', function (next) {
-    if (!this.password) {
-        console.log('models/user.js =======NO PASSWORD PROVIDED=======')
-        next()
-    } else {
-        console.log('models/user.js hashPassword in pre save');
-
-        this.password = this.hashPassword(this.password)
-        next()
-    }
-})
-
 const Items = mongoose.model('Items', itemsSchema)
 module.exports = Items
