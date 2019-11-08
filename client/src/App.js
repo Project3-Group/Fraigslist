@@ -4,8 +4,9 @@ import { Route } from 'react-router-dom'
 // components
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
-import Navbar from './components/navbar'
 import Home from './pages/home'
+import Create from './pages/create'
+import Navbar from './components/navbar'
 
 class App extends Component {
   state = {
@@ -46,7 +47,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
@@ -64,11 +64,13 @@ class App extends Component {
             />}
         />
         <Route
+          exact path="/create"
+          component={Create} />
+        <Route
           path="/signup"
           render={() =>
             <Signup />}
         />
-
       </div>
     );
   }

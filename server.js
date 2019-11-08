@@ -10,7 +10,7 @@ const passport = require('./passport');
 const app = express();
 const PORT = process.env.PORT || 8080;
 // Route requires
-const user = require('./routes/user')
+const user = require('./routes/api/user')
 
 // MIDDLEWARE
 app.use(morgan('dev'))
