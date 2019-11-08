@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom'
 // components
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
-import Home from './pages/home'
 import Navbar from './components/navbar'
+import Home from './pages/home'
 
 class App extends Component {
   state = {

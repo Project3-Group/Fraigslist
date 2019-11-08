@@ -6,7 +6,7 @@ import axios from 'axios'
 
 class Navbar extends Component {
 
-    logout = event => {
+    wlogout = event => {
         event.preventDefault()
         console.log('logging out')
         axios.post('/user/logout').then(response => {

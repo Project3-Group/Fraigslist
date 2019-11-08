@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+
 class LoginForm extends Component {
     state = {
         username: '',
         password: '',
         redirectTo: null
     }
+
 
     handleChange = event => {
         this.setState({
@@ -18,7 +20,6 @@ class LoginForm extends Component {
     handleSubmit = event => {
         event.preventDefault()
         console.log('handleSubmit')
-
         axios
             .post('/user/', {
                 username: this.state.username,
