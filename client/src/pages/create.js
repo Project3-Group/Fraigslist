@@ -8,10 +8,14 @@ class AddItem extends Component {
         quantity: "",
         price: "",
         itemDescription: "",
+        company: "",
+        inCart: false,
+
     };
 
+
     handleInputChange = event => {
-        // console.log("working");
+
         console.log(event.target);
         const { name, value } = event.target;
 
@@ -31,6 +35,9 @@ class AddItem extends Component {
             quantity: this.state.quantity,
             price: this.state.price,
             itemDescription: this.state.itemDescription,
+            company: this.state.itemDescription,
+            // inCart: this.state.inCart,
+
         }
         console.log(newItem);
         // axios
@@ -44,6 +51,7 @@ class AddItem extends Component {
                 quantity: "",
                 price: "",
                 itemDescription: "",
+                company: "",
             }
         )
     }
@@ -78,6 +86,12 @@ class AddItem extends Component {
                         onChange={this.handleInputChange}
                         type="number"
                         placeholder="price" />
+                    <input
+                        name="company"
+                        value={this.state.company}
+                        onChange={this.handleInputChange}
+                        type="text"
+                        placeholder="company" />
                     <input
                         name="itemDescription"
                         type="text"
