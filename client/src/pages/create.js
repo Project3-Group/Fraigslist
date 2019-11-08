@@ -13,7 +13,9 @@ class AddItem extends Component {
 
     };
 
+
     handleInputChange = event => {
+
         console.log(event.target);
         const { name, value } = event.target;
 
@@ -35,6 +37,7 @@ class AddItem extends Component {
             itemDescription: this.state.itemDescription,
             company: this.state.itemDescription,
             // inCart: this.state.inCart,
+
         }
         console.log(newItem);
         // axios
