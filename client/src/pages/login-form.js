@@ -3,19 +3,25 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 class LoginForm extends Component {
-    state = {
-        username: '',
-        password: '',
-        redirectTo: null
+    constructor() {
+        super()
+        this.state = {
+            username: '',
+            password: '',
+            redirectTo: null
+        }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+
     }
 
-    handleChange = event => {
+    handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
-    handleSubmit = event => {
+    handleSubmit(event) {
         event.preventDefault()
         console.log('handleSubmit')
 

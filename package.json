@@ -20,7 +20,7 @@
     "nodejs",
     "bcryptjs"
   ],
-  "author": "Colin Goodale",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
@@ -36,5 +36,5 @@
     "passport-local": "^1.0.0",
     "spectre.css": "^0.5.8"
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:8080"
 }
