@@ -13,4 +13,8 @@ export default {
         console.log('retriving item data');
         return axios.get('/api/items/' + id);
     },
+    updateItem: id => {
+        console.log("updating item");
+        return axios.put('/api/items/' +id);
+    }
 };

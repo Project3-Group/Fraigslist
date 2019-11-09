@@ -35,9 +35,9 @@ class AddItem extends Component {
             // inCart: this.state.inCart,
 
         }
-        console.log(newItem);
+        // console.log(newItem);
+        
         // axios
-
         API.addItem(newItem);
 
         this.setState(

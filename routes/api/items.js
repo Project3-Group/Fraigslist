@@ -9,7 +9,8 @@ router.route("/")
 // /api/itemsContr/:id
 router.route("/:id")
     .get(itemsContr.findById)
-    // .put(itemsContr.update);
+    .put(itemsContr.update)
+    .put(itemsContr.update);
 
 
 module.exports = router;
