@@ -5,8 +5,11 @@ import { Route } from 'react-router-dom'
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
 import Home from './pages/home'
-import addItem from './pages/additem'
+import AddItem from './pages/additem'
+import SingleItem from './pages/singleItem'
+
 import Navbar from './components/navbar'
+
 
 class App extends Component {
   state = {
@@ -53,19 +56,21 @@ class App extends Component {
           <p>Join the party, {this.state.username}!</p>
         }
         {/* Routes to different components */}
-        <Route
-          exact path="/"
-          component={Home} />
-        <Route
-          exact path="/addItem"
-          component={addItem} />
+        <Route exact path="/"  component={Home} />
+
+        <Route exact path="/addItem" component={AddItem} />
+
+        <Route exact path ='/items/:id' component={SingleItem} />
+
         <Route
           path="/login"
           render={() =>
             <LoginForm
               updateUser={this.updateUser}
             />}
+
         />
+
         <Route
           path="/signup"
           render={() =>

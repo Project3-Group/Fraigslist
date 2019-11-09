@@ -8,5 +8,9 @@ export default {
     getItemList: () => {
         console.log('retrieving list');
         return axios.get('/api/items');
-    }
+    },
+    getItem: id => {
+        console.log('retriving item data');
+        return axios.get('/api/items/' + id);
+    },
 };
