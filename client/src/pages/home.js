@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Navbar from '../components/navbar'
 import Card from '../components/Card'
-import items from "../items.json";
+import { Link } from 'react-router-dom';
+// import items from "../items.json";
 import API from '../utils/Api';
 
 
@@ -27,12 +28,16 @@ class Home extends Component {
                         {this.state.items.map(cards => (
                             <Card
                                 id={cards._id}
-                                key={cards.quantity}
-                                name={cards.itemName}
-                                image={cards.imageLink}
-                                description={cards.itemDescription}
-                            />
-                        ))}
+                                key={cards._id}
+                                itemName={cards.itemName}
+                                price={cards.price}
+                                quantity={cards.quantity}
+                                imageLink={cards.imageLink}
+                                >
+                            {/* description={cards.itemDescription} save for dynamically created pages */}
+                            <Link to={"/items/" + cards._id}>Click</Link> 
+                            </Card>
+                            ))}
                     </div>
                 </div>
             </div>
