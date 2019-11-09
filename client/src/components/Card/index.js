@@ -3,8 +3,9 @@ import './card.css';
 
 const Card = props => (
   <div className="image-group">
+    {console.log(props)}
     <div className="card">
-      <img id={props.name} alt={props.name} src={props.image} />
+      <img id={props.id} alt={props.name} src={props.image} />
       <div>{props.description}</div>
     </div>
   </div>
