@@ -23,19 +23,26 @@ class SingleItem extends Component {
         })
     }
 
-    // need to add math to take total - numpurchased
     handleFormSubmit = event => {
         event.preventDefault();
         const numPurchased = {
             quantity: this.state.quantity,
         }
+            // // database number
+            // console.log(this.state.item.quantity)
+            // // user input number
+            // console.log(numPurchased.quantity)
 
-        console.log(this.state.item.quantity)
-        console.log(numPurchased)
-
-        API.updateItem(this.props.match.params.id)
-            .then(data => this.setState({/* not sure how to update total - numPurchased */ })
-            )
+        if (this.state.item.quantity - numPurchased.quantity >= 0) {
+            console.log("sold!")
+            API.updateItem(this.props.match.params.id, {
+                new: true,
+                quantity: this.state.item.quantity - numPurchased.quantity
+                // need to update quantity in db after math 1 line above
+            })
+        } else {
+            console.log("not enough to sell")
+        }
     }
 
 
