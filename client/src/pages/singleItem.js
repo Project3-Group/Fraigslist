@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
+import './pages.css';
 
 
 class SingleItem extends Component {
@@ -28,10 +29,10 @@ class SingleItem extends Component {
         const numPurchased = {
             quantity: this.state.quantity,
         }
-            // // database number
-            // console.log(this.state.item.quantity)
-            // // user input number
-            // console.log(numPurchased.quantity)
+        // // database number
+        // console.log(this.state.item.quantity)
+        // // user input number
+        // console.log(numPurchased.quantity)
 
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
             console.log("sold!")
@@ -49,25 +50,32 @@ class SingleItem extends Component {
 
     render() {
         return (
-            <div> test test test test test test test
+            <div>
                 <div className="container">
-                    <div className="row">
+                    <div class='row'>
+                        <div>{this.state.item.itemName}</div>
+                    </div>
+
+                    <div className="row image-row">
                         {/* columns not working the way outside of react maybe need reactstrap? */}
                         {/* {console.log(this.state.item)} */}
                         {/* add item detail stuff */}
-                        <div>{this.state.item.itemName}</div>
-                        <div>Item Quantity: {this.state.item.quantity}</div>
                         <img
                             src={this.state.item.imageLink}
                             alt={this.state.item.itemName}
                             id={this.state.item.itemName} />
                     </div>
+                    <div class='row'>
+                        <div>Quantity: {this.state.item.quantity}</div>
+                    </div>
 
-                    <div className="row">
+                    <div className="row description-row">
 
                         {/* stuff to handle item purchases */}
                         Purchase Quantity:
                         {/* figure out how to make this box smaller - aethetic purposes only */}
+                    </div>
+                    <div class='row'>
                         <input
                             name="quantity"
                             type="number"

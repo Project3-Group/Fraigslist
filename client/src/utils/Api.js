@@ -15,6 +15,6 @@ export default {
     },
     updateItem: id => {
         console.log("updating item");
-        return axios.put('/api/items/' +id);
+        return axios.put('/api/items/' + id);
     }
 };

@@ -56,11 +56,11 @@ class App extends Component {
           <p>Join the party, {this.state.username}!</p>
         }
         {/* Routes to different components */}
-        <Route exact path="/"  component={Home} />
+        <Route exact path="/" component={Home} />
 
         <Route exact path="/addItem" component={AddItem} />
 
-        <Route exact path ='/items/:id' component={SingleItem} />
+        <Route exact path='/items/:id' component={SingleItem} />
 
         <Route
           path="/login"
@@ -76,6 +76,7 @@ class App extends Component {
           render={() =>
             <Signup />}
         />
+
       </div>
     );
   }
