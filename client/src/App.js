@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // components
 import Signup from './pages/sign-up'
 import LoginForm from './pages/login-form'
 import Home from './pages/home'
 import AddItem from './pages/additem'
 import SingleItem from './pages/singleItem'
+import NoMatch from './pages/no-match'
 
 import Navbar from './components/navbar'
 
@@ -50,32 +51,41 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
-        }
-        {/* Routes to different components */}
-        <Route exact path="/"  component={Home} />
+        <BrowserRouter>
+          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          {/* greet user if logged in: */}
+          {this.state.loggedIn &&
+            <p>Join the party, {this.state.username}!</p>
+          }
+          {/* Routes to different components */}
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home} />
 
-        <Route exact path="/addItem" component={AddItem} />
+              <Route exact path="/addItem" component={AddItem} />
 
-        <Route exact path ='/items/:id' component={SingleItem} />
+              <Route exact path='/items/:id' component={SingleItem} />
 
-        <Route
-          path="/login"
-          render={() =>
-            <LoginForm
-              updateUser={this.updateUser}
-            />}
+              <Route
+                path="/login"
+                render={() =>
+                  <LoginForm
+                    updateUser={this.updateUser}
+                  />}
 
-        />
+              />
 
-        <Route
-          path="/signup"
-          render={() =>
-            <Signup />}
-        />
+              <Route
+                path="/signup"
+                render={() =>
+                  <Signup />}
+              />
+
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+
 
       </div>
     );
