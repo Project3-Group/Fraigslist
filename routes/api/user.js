@@ -9,7 +9,9 @@ router.post('/', (req, res) => {
     // const { username, password } = req.body
     const username = req.body.username;
     const password = req.body.password;
-    console.log(username, password)
+    const email = req.body.email;
+
+    console.log(username, password, email)
     // ADD VALIDATION
     User.findOne({ username: username }, (err, user) => {
         if (err) {
@@ -22,7 +24,8 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 username: username,
-                password: password
+                password: password,
+                email: email
             })
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)
