@@ -23,10 +23,12 @@ module.exports = {
             .then(dbItem => res.json(dbItem))
             .catch(err => res.status(422).json(err));
     },
-    update: function (req,res){
+    update: function (req, res) {
+        // console.log(req.params.id)
+        // console.log(req.body)
         db.Items
-        .findOneAndUpdate({ _id: req.params.id }, req.body)
-        .then(dbUpdate =>res.json(dbUpdate))
-        .catch(err => res.status(422).json(err));
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbUpdate => res.json(dbUpdate))
+            .catch(err => res.status(422).json(err));
     }
 };

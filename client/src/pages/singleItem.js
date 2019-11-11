@@ -10,9 +10,13 @@ class SingleItem extends Component {
     };
 
     componentDidMount() {
+       this.getItemDetails()
+    }
+
+    getItemDetails = () => {
         API.getItem(this.props.match.params.id)
-            .then(res => this.setState({ item: res.data }))
-            .catch(err => console.log(err));
+        .then(res => this.setState({ item: res.data }))
+        .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
@@ -33,16 +37,24 @@ class SingleItem extends Component {
         // console.log(this.state.item.quantity)
         // // user input number
         // console.log(numPurchased.quantity)
+        // console.log(this.props.match.params.id)
 
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
-            console.log("sold!")
+            // console.log("sold!")
+            // change page so that it gives an notification that user owes quantity*price
+
             API.updateItem(this.props.match.params.id, {
-                new: true,
+                // new: true,
                 quantity: this.state.item.quantity - numPurchased.quantity
                 // need to update quantity in db after math 1 line above
+            }).then(update => {
+                this.getItemDetails()
+            }).catch(err => {
+                console.log(err)
             })
         } else {
-            console.log("not enough to sell")
+            // change page so that it gives an notification that there isn't enough stock
+            // console.log("not enough to sell")
         }
     }
 
@@ -52,7 +64,9 @@ class SingleItem extends Component {
         return (
             <div>
                 <div className="container">
-                    <div class='row'>
+                    <div className='row'>
+                        <div>Price: USD$: {this.state.item.price}</div>
+
                         <div>{this.state.item.itemName}</div>
                     </div>
 
@@ -65,7 +79,7 @@ class SingleItem extends Component {
                             alt={this.state.item.itemName}
                             id={this.state.item.itemName} />
                     </div>
-                    <div class='row'>
+                    <div className='row'>
                         <div>Quantity: {this.state.item.quantity}</div>
                     </div>
 
@@ -75,15 +89,17 @@ class SingleItem extends Component {
                         Purchase Quantity:
                         {/* figure out how to make this box smaller - aethetic purposes only */}
                     </div>
-                    <div class='row'>
-                        <input
-                            name="quantity"
-                            type="number"
-                            value={this.state.quantity}
-                            onChange={this.handleInputChange}
-                            placeholder="quantity" />
+                    <div className='row'>
+                        <form>
+                            <input
+                                name="quantity"
+                                type="number"
+                                value={this.state.quantity}
+                                onChange={this.handleInputChange}
+                                placeholder="quantity" />
 
-                        <button onClick={this.handleFormSubmit}>Submit</button>
+                            <button onClick={this.handleFormSubmit}>Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
