@@ -10,9 +10,12 @@ const Card = props => (
         id={props.id}
         alt={props.name}
         src={props.imageLink}
-        />
-        <div>Quantity: {props.quantity}</div>
-        <div>Price: US ${props.price}</div>
+      />
+      <form action={'/items/' + props.id} method='get'>
+        <button type='submit'>Item Page</button>
+      </form>
+      <div>Quantity: {props.quantity}</div>
+      <div>Price: US ${props.price}</div>
       <div>{props.description}</div>
     </div>
   </div>

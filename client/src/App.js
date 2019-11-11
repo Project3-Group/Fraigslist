@@ -76,6 +76,7 @@ class App extends Component {
           render={() =>
             <Signup />}
         />
+
       </div>
     );
   }
