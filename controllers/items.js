@@ -30,5 +30,19 @@ module.exports = {
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbUpdate => res.json(dbUpdate))
             .catch(err => res.status(422).json(err));
+    },
+    findAll: function (req, res) {
+        db.Items
+            .find(req.query)
+            .sort({ date: -1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    findUserItems: function (req, res) {
+        db.Items
+        console.log("Finding user items")
+            .findOne(res.params.id)
+            .then(dbUser => res.json(dbUser))
+            .catch(err => res.status(422).json(err));
     }
 };

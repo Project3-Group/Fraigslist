@@ -13,7 +13,7 @@ class Home extends Component {
 
     componentDidMount() {
         API.getItemList().then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             this.setState({
                 items: res.data
             });
