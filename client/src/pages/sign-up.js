@@ -5,8 +5,8 @@ class Signup extends Component {
 	state = {
 		username: '',
 		password: '',
-        email: '',
-		
+		email: '',
+		// create error class to contain styling class for red highlight of missing inputs
 		confirmPassword: '',
 	}
 
@@ -30,13 +30,26 @@ class Signup extends Component {
 		})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				// if(response.data.errors){
+				// 	console.log(response.data.errors);
+				// }
+				if (!response.data.errors) {
 					console.log('successful signup')
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
 					})
 				} else {
-					console.log('username already taken')
+					console.log(response.data.errors)
+					if(response.data.errors.email){
+						alert("Email is required")
+						this.setState({
+        					email: '',
+							redirectTo: '/signup'
+						})
+					}
+					if(response.data.errors.password){
+						console.log(response.data.errors.password.message)
+					}
 				}
 			}).catch(error => {
 				console.log('signup error: ')
@@ -72,7 +85,7 @@ class Signup extends Component {
                             </div>
                             <div className="col-3 col-mr-auto">
                                 <input className="form-input"
-                                    placeholder="email (optional"
+                                    placeholder="email (required)"
                                     type="text"
                                     name="email"
                                     value={this.state.email}

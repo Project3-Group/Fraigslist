@@ -4,7 +4,7 @@ const User = require('../../models/user')
 const passport = require('../../passport')
 
 router.post('/', (req, res) => {
-    console.log('user signup');
+    console.log(res);
 
     // const { username, password } = req.body
     const username = req.body.username;
@@ -13,7 +13,13 @@ router.post('/', (req, res) => {
 
     console.log(username, password, email)
     // ADD VALIDATION
+    console.log(res.error)
+    console.log(email);
+    if(email == undefined){
+        res.redirect("/signup");
+    }else{
     User.findOne({ username: username }, (err, user) => {
+        console.log("~~~~")
         if (err) {
             console.log('User.js post error: ', err)
         } else if (user) {
@@ -33,6 +39,7 @@ router.post('/', (req, res) => {
             })
         }
     })
+}
 })
 
 router.post(
