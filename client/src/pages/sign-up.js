@@ -41,15 +41,19 @@ class Signup extends Component {
 				} else {
 					console.log(response.data.errors)
 					if(response.data.errors.email){
-						alert("Email is required")
-						this.setState({
-        					email: '',
-							redirectTo: '/signup'
-						})
+						console.log("Email is required")
+						// this.setState({
+        				// 	email: '',
+						// 	redirectTo: '/signup'
+						// })
 					}
 					if(response.data.errors.password){
 						console.log(response.data.errors.password.message)
 					}
+					if(response.data.errors.username){
+						console.log(response.data.errors.username.message)
+					}
+
 				}
 			}).catch(error => {
 				console.log('signup error: ')
