@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
         res.redirect("/signup");
     }else{
     User.findOne({ username: username }, (err, user) => {
-        console.log("~~~~")
         if (err) {
             console.log('User.js post error: ', err)
         } else if (user) {
