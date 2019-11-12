@@ -5,6 +5,8 @@ class Signup extends Component {
 	state = {
 		username: '',
 		password: '',
+        email: '',
+		
 		confirmPassword: '',
 	}
 
@@ -22,7 +24,9 @@ class Signup extends Component {
 		//request to server to add a new username/password
 		axios.post('/api/user', {
 			username: this.state.username,
-			password: this.state.password
+			password: this.state.password,
+			email: this.state.email
+
 		})
 			.then(response => {
 				console.log(response)
@@ -62,6 +66,20 @@ class Signup extends Component {
 							/>
 						</div>
 					</div>
+					<div className="form-group">
+                            <div className="col-1 col-ml-auto">
+                                <label className="form-label" htmlFor="email">Email: </label>
+                            </div>
+                            <div className="col-3 col-mr-auto">
+                                <input className="form-input"
+                                    placeholder="email (optional"
+                                    type="text"
+                                    name="email"
+                                    value={this.state.email}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+                        </div>
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
 							<label className="form-label" htmlFor="password">Password: </label>

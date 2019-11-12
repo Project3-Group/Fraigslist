@@ -6,11 +6,10 @@ router.route("/")
     .post(itemsContr.create);
 
 
-// /api/itemsContr/:id
+// /api/items/:id
 router.route("/:id")
     .get(itemsContr.findById)
     .put(itemsContr.update)
-    .put(itemsContr.update);
 
 
 module.exports = router;

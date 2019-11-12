@@ -23,7 +23,8 @@ class LoginForm extends Component {
         axios
             .post('/api/user/login', {
                 username: this.state.username,
-                password: this.state.password
+                password: this.state.password,
+
             })
             .then(response => {
                 console.log('login response: ')
@@ -69,6 +70,7 @@ class LoginForm extends Component {
                                 />
                             </div>
                         </div>
+
                         <div className="form-group">
                             <div className="col-1 col-ml-auto">
                                 <label className="form-label" htmlFor="password">Password: </label>
