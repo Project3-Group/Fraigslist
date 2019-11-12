@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from '../components/navbar'
 import Card from '../components/Card'
 import { Link } from 'react-router-dom';
 // import items from "../items.json";
@@ -33,11 +32,11 @@ class Home extends Component {
                                 price={cards.price}
                                 quantity={cards.quantity}
                                 imageLink={cards.imageLink}
-                                >
-                            {/* description={cards.itemDescription} save for dynamically created pages */}
-                            <Link to={"/items/" + cards._id}>Click</Link> 
+                            >
+                                {/* description={cards.itemDescription} save for dynamically created pages */}
+                                <Link to={"/items/" + cards._id}>Click</Link>
                             </Card>
-                            ))}
+                        ))}
                     </div>
                 </div>
             </div>
