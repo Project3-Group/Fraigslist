@@ -1,3 +1,34 @@
+:root {
+  --mainBlue: #2a2a72;
+  --lightBlue: #009ffd;
+  --mainWhite: #f3f3f3;
+  --mainDark: #232528;
+  --mainDark: #000;
+  --mainYellow: #ffa400;
+  --mainRed: #CB300F;
+  
+}
+
+body {
+  font-family: 'Jomolhari', serif !important;
+  
+  color: var(--mainDark) !important;
+  background-image: url('https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/d/e/dea8c60d19e758c8744437e7b91b73c10ad0e030.jpeg') !important;
+  background-repeat: no-repeat, repeat;
+  background-size: cover
+}
+.text-title {
+  font-family: 'Yeon Sung', cursive;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+}
+.text-blue {
+  color: var(--mainRed);
+}
+.text-bright {
+  color: var(--lightBlue);
+}
+
 .App {
   text-align: center;
 }
@@ -23,10 +54,30 @@
 }
 
 .navbar {
- 
+  display: flex;
   margin-top: auto;
-  
+  justify-content: flex-start !important;
 }
+
+.btn-black {
+  background: transparent;
+  text-transform: capitalize;
+  font-size: 0.8rem !important;
+  color: var(--mainBlack);
+  border-radius: 0 !important;
+  border: 0.1rem solid var(--mainDark) !important;
+}
+.btn-black:hover {
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
+}
+.cart-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--mainYellow);
+}
+
+
 #top-filler {
   margin-bottom: auto;
 }
