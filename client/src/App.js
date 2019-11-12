@@ -61,8 +61,9 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-
+            {this.state.loggedIn && 
               <Route exact path="/addItem" component={AddItem} />
+            }
 
               <Route exact path='/items/:id' component={SingleItem} />
 
