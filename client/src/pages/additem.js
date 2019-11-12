@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import API from '../utils/Api';
+import axios from 'axios'
+
 
 class AddItem extends Component {
     state = {
@@ -10,13 +12,25 @@ class AddItem extends Component {
         itemDescription: "",
         company: "",
         inCart: false,
+        id: ""
     };
 
-    handleInputChange = event => {
+    componentDidMount() {
+        this.getUser();
+    }
 
+    getUser = () => {
+        axios.get('/api/user/').then(response => {
+            // console.log(response.data.user._id)
+            this.setState({
+                id: response.data.user._id
+            })
+        })
+    }
+
+    handleInputChange = event => {
         console.log(event.target);
         const { name, value } = event.target;
-
         this.setState({
             [name]: value
         })
@@ -32,11 +46,12 @@ class AddItem extends Component {
             price: this.state.price,
             itemDescription: this.state.itemDescription,
             company: this.state.itemDescription,
+            id: this.state.id
             // inCart: this.state.inCart,
 
         }
-        // console.log(newItem);
-        
+        console.log(newItem);
+
         // axios
         API.addItem(newItem);
 

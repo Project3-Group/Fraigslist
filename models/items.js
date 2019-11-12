@@ -36,6 +36,10 @@ const itemsSchema = new Schema({
         type: Boolean, 
         default: false,
     },
+    id: {
+        type: String,
+        required: true,
+    }
     // user: { type: Schema.Types.ObjectId, ref: 'User' },
 })
 

@@ -67,7 +67,7 @@ class App extends Component {
                 <Route exact path="/addItem" component={AddItem} />
               }
 
-              <Route exact path="/store" component={UserItems} />
+              <Route exact path="/store/:id" component={UserItems} />
 
 
               <Route exact path='/items/:id' component={SingleItem} />
@@ -88,6 +88,7 @@ class App extends Component {
               />
 
               <Route component={NoMatch} />
+              
             </Switch>
           </div>
         </BrowserRouter>

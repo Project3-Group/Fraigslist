@@ -12,10 +12,4 @@ router.route("/:id")
     .get(itemsContr.findById)
     .put(itemsContr.update)
 
-// route /useritems
-router.route('/stuff/:id')
-    .get(itemsContr.findUserItems)
-
-
-
 module.exports = router;

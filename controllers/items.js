@@ -15,7 +15,7 @@ module.exports = {
         db.Items
             .create(req.body)
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err));   
     },
     findById: function (req, res) {
         db.Items
@@ -38,10 +38,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findUserItems: function (req, res) {
+    findByUserId: function (req, res) {
         db.Items
-        console.log("Finding user items")
-            .findOne(res.params.id)
+        console.log("--------------------")
+        console.log(req.params.id)
+            .findOne({_id: req.params.id})
+            .populate(items)
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
     }
