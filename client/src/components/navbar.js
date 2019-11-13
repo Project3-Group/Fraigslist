@@ -43,6 +43,7 @@ class Navbar extends Component {
                                     <span className="text-secondary">Add an Item</span>
                                 </Link>
                                 <Link to='/myitems' className='btn btn-link'>
+                                {/* <Link to='/useritems/' + id className='btn btn-link'> */}
                                     <span className='text-secondary my-items'>My Items</span>
                                 </Link>
                             </section>
@@ -63,7 +64,7 @@ class Navbar extends Component {
                     <div className="col-4 col-mr-auto">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">MERN Passport</h1>
+                        <h1 className="App-title">Super Dope Free Market</h1>
                     </div>
                 </header>
             </div>

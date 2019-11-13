@@ -29,8 +29,9 @@ class App extends Component {
 
   getUser = () => {
     axios.get('/api/user/').then(response => {
-      console.log('Get user response: ')
-      console.log(response.data)
+      let id = response.data.user._id
+      console.log("WHERE IS THIS");
+      console.log(id)
       if (response.data.user) {
         console.log(response.data.user);
         console.log('Get User: There is a user saved in the server session: ')
@@ -67,6 +68,7 @@ class App extends Component {
                 <Route exact path="/addItem" component={AddItem} />
               }
 
+              
               <Route exact path="/store/:id" component={UserItems} />
 
               <Route exact path='/items/:id' component={SingleItem} />
@@ -87,7 +89,7 @@ class App extends Component {
               />
 
               <Route component={NoMatch} />
-              
+
             </Switch>
           </div>
         </BrowserRouter>
