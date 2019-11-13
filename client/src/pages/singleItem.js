@@ -3,7 +3,7 @@ import API from '../utils/Api';
 import './pages.css';
 import axios from 'axios'
 const nodemailer = require("nodemailer");
-const oauth2 = require("oauth2")
+const oauth2 = require("oauth2");
 
 
 
