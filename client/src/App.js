@@ -89,9 +89,11 @@ class App extends Component {
               <Route
                 path="/signup"
                 render={() =>
-                  <Signup />}
+                  <Signup
+                    updateUser={this.updateUser}
+                  />}
               />
-              <Route path="/cart" component={Cart} /> 
+              <Route path="/cart" component={Cart} />
 
               <Route component={NoMatch} />
 
