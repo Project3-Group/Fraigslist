@@ -73,8 +73,6 @@ class SingleItem extends Component {
 
     }
 
-
-
     render() {
         return (
             <div>

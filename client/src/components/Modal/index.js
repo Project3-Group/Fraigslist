@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 // import './modal.css';
 
 
-function Example() {
+function Modals() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -50,8 +50,10 @@ function Example() {
             </Button>
                 </Modal.Footer>
             </Modal>
+
+            
         </>
     );
 }
 
-export default Example;
+export default Modals;
