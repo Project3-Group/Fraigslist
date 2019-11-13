@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+const nodemailer = require("nodemailer");
+const oauth2 = require("oauth2")
 
 
 class SingleItem extends Component {
@@ -38,6 +40,10 @@ class SingleItem extends Component {
         // // user input number
         // console.log(numPurchased.quantity)
         // console.log(this.props.match.params.id)
+
+        /////////////////////////////////////////////////////////////
+        
+        /////////////////////////////////////////////////////////////
 
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
             // console.log("sold!")
