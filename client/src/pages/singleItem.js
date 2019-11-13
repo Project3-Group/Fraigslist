@@ -41,9 +41,6 @@ class SingleItem extends Component {
         // console.log(numPurchased.quantity)
         // console.log(this.props.match.params.id)
 
-        /////////////////////////////////////////////////////////////
-        
-        /////////////////////////////////////////////////////////////
 
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
             // console.log("sold!")
@@ -59,13 +56,11 @@ class SingleItem extends Component {
                 console.log(err)
             })
         } else {
-            alert('not enough');
+            // alert('not enough');
             // change page so that it gives an notification that there isn't enough stock
-            // console.log("not enough to sell")
+            console.log("not enough to sell")
         }
     }
-
-
 
     render() {
         return (
