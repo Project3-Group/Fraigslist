@@ -1,24 +1,41 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+import axios from 'axios'
 const nodemailer = require("nodemailer");
 const oauth2 = require("oauth2")
+
 
 
 class SingleItem extends Component {
     state = {
         item: [],
         quantity: "",
+        id: ""
     };
 
     componentDidMount() {
-       this.getItemDetails()
+        this.getItemDetails();
+        this.getUser();
+    }
+
+    getUser = () => {
+        axios.get('/api/user/').then(response => {
+            // console.log(response.data.user._id)
+            if (!response.data.user) {
+                return;
+            } else {
+                this.setState({
+                    id: response.data.user._id
+                })
+            }
+        })
     }
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
-        .then(res => this.setState({ item: res.data }))
-        .catch(err => console.log(err));
+            .then(res => this.setState({ item: res.data }))
+            .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
@@ -35,34 +52,25 @@ class SingleItem extends Component {
         const numPurchased = {
             quantity: this.state.quantity,
         }
-        // // database number
-        // console.log(this.state.item.quantity)
-        // // user input number
-        // console.log(numPurchased.quantity)
-        // console.log(this.props.match.params.id)
-
-        /////////////////////////////////////////////////////////////
-        
-        /////////////////////////////////////////////////////////////
-
-        if (this.state.item.quantity - numPurchased.quantity >= 0) {
-            // console.log("sold!")
-            // change page so that it gives an notification that user owes quantity*price
-            API.updateItem(this.props.match.params.id, {
-                // new: true,
-                quantity: this.state.item.quantity - numPurchased.quantity
-                // need to update quantity in db after math 1 line above
-            }).then(update => {
-                this.getItemDetails();
-                window.location.assign('/');
-            }).catch(err => {
-                console.log(err)
-            })
+        if (!this.state.id) {
+            alert("Can't purchase without logging in");
+            window.location.assign('/');
         } else {
-            alert('not enough');
-            // change page so that it gives an notification that there isn't enough stock
-            // console.log("not enough to sell")
+            if (this.state.item.quantity - numPurchased.quantity < 0) {
+                alert('not enough');
+            } else {
+                API.updateItem(this.props.match.params.id, {
+                    quantity: this.state.item.quantity - numPurchased.quantity
+                }).then(update => {
+                    this.getItemDetails();
+                    window.location.assign('/');
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+
         }
+
     }
 
 
@@ -73,6 +81,8 @@ class SingleItem extends Component {
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
+                        {console.log('ITEMS')}
+                        {console.log(this.state)}
 
                         <div>{this.state.item.itemName}</div>
                     </div>
