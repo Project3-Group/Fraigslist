@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: { type: String, unique: false, required: true },
     email: { type: String, unique: true, required: true },
     items: { type: Schema.Types.ObjectId, ref: 'Items' }
+    // add checkbox boolean true false required in order to sign up
 
 })
 
@@ -30,7 +31,6 @@ userSchema.pre('save', function (next) {
         next()
     } else {
         console.log('models/user.js hashPassword in pre save');
-
         this.password = this.hashPassword(this.password)
         next()
     }
