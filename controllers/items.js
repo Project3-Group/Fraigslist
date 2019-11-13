@@ -11,6 +11,8 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
+        console.log("--------------------")
+        console.log(req.params.id)
         console.log("worked")
         db.Items
             .create(req.body)
@@ -40,10 +42,8 @@ module.exports = {
     },
     findByUserId: function (req, res) {
         db.Items
-        console.log("--------------------")
-        console.log(req.params.id)
-            .findOne({_id: req.params.id})
-            .populate(items)
+            .find({id: req.params.id})
+            // .populate('items')
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
     }

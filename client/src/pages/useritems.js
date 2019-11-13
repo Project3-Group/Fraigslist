@@ -23,10 +23,10 @@ class UserItems extends Component {
             let id = response.data.user._id
             console.log(id)
             API.getUserItems(id).then(res => {
-                console.log('something')
+                console.log('got something?')
                 console.log(res)
                 this.setState({
-                    item: res.data
+                    items: res.data
                 })
             }).catch(err => console.log(err))
         })
@@ -39,6 +39,19 @@ class UserItems extends Component {
         return (
             <div>
                 test
+                {this.state.items.map(cards => (
+                    <Card
+                        id={cards._id}
+                        key={cards._id}
+                        itemName={cards.itemName}
+                        price={cards.price}
+                        quantity={cards.quantity}
+                        imageLink={cards.imageLink}
+                    >
+                        {/* description={cards.itemDescription} save for dynamically created pages */}
+                        <Link to={"/items/" + cards._id}>Click</Link>
+                    </Card>
+                ))}
             </div>
         )
     }

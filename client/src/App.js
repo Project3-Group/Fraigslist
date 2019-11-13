@@ -69,7 +69,6 @@ class App extends Component {
 
               <Route exact path="/store/:id" component={UserItems} />
 
-
               <Route exact path='/items/:id' component={SingleItem} />
 
               <Route
