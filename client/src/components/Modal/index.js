@@ -14,7 +14,7 @@ function Example() {
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
+                Edit item details
         </Button>
 
             <Modal show={show} onHide={handleClose} style={{ opacity: 1 }}>
