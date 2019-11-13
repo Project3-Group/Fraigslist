@@ -36,23 +36,43 @@ class Signup extends Component {
 				// }
 				if (!response.data.errors) {
 					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
+					axios
+						.post('/api/user/login', {
+							username: this.state.username,
+							password: this.state.password,
+
+						})
+						.then(response => {
+							console.log('login response: ')
+							console.log(response)
+							if (response.status === 200) {
+								// update App.js state
+								this.props.updateUser({
+									loggedIn: true,
+									username: response.data.username
+								})
+								// update the state to redirect to home
+								window.location.assign('/')
+							}
+						}).catch(error => {
+							console.log('login error: ')
+							console.log(error);
+
+						})
 				} else {
 					console.log(response.data.errors)
 					if (response.data.errors.email) {
-						console.log("Email is required")
+						alert("Email is required")
 						this.setState({
 							email: '',
 							// redirectTo: '/signup'
 						})
 					}
 					if (response.data.errors.password) {
-						console.log("Password is required")
+						alert("Password is required")
 					}
 					if (response.data.errors.username) {
-						console.log("Username is required")
+						alert("Username is required")
 						this.setState({
 							className: "asdf"
 						})
@@ -71,7 +91,6 @@ class Signup extends Component {
 	render() {
 		return (
 			<div className="SignupForm">
-				<h4>Sign up</h4>
 				<form className="form-horizontal">
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
