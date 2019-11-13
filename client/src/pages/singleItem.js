@@ -42,17 +42,18 @@ class SingleItem extends Component {
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
             // console.log("sold!")
             // change page so that it gives an notification that user owes quantity*price
-
             API.updateItem(this.props.match.params.id, {
                 // new: true,
                 quantity: this.state.item.quantity - numPurchased.quantity
                 // need to update quantity in db after math 1 line above
             }).then(update => {
-                this.getItemDetails()
+                this.getItemDetails();
+                window.location.assign('/');
             }).catch(err => {
                 console.log(err)
             })
         } else {
+            alert('not enough');
             // change page so that it gives an notification that there isn't enough stock
             // console.log("not enough to sell")
         }
