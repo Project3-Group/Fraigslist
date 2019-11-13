@@ -53,6 +53,7 @@ class SingleItem extends Component {
                 console.log(err)
             })
         } else {
+            alert('not enough');
             // change page so that it gives an notification that there isn't enough stock
             // console.log("not enough to sell")
         }
