@@ -16,7 +16,8 @@ import Navbar from './components/navbar'
 class App extends Component {
   state = {
     loggedIn: false,
-    username: null
+    username: null,
+    id: null
   }
 
   componentDidMount() {
@@ -29,16 +30,14 @@ class App extends Component {
 
   getUser = () => {
     axios.get('/api/user/').then(response => {
-      let id = response.data.user._id
-      console.log("WHERE IS THIS");
-      console.log(id)
       if (response.data.user) {
         console.log(response.data.user);
         console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          id: response.data.user._id
         })
       } else {
         console.log('Get user: no user');
@@ -54,7 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
             <p>Join the party, {this.state.username}!</p>
@@ -68,8 +67,7 @@ class App extends Component {
                 <Route exact path="/addItem" component={AddItem} />
               }
 
-              
-              <Route exact path="/store/:id" component={UserItems} />
+              <Route exact path="/useritems/:id" component={UserItems} />
 
               <Route exact path='/items/:id' component={SingleItem} />
 

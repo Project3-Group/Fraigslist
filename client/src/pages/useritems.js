@@ -21,7 +21,8 @@ class UserItems extends Component {
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
-            // console.log(response.data.user._id)
+            console.log("logging response");
+            console.log(response.data)
             let id = response.data.user._id
             console.log(id)
             API.getUserItems(id).then(res => {
@@ -49,7 +50,7 @@ class UserItems extends Component {
                         <Link to={"/items/" + cards._id}>Click</Link>
                     </Card>
                 ))}
-                <Modal>sadfasdfasdf</Modal>
+                <Modal />
             </div>
         )
     }

@@ -1,31 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal, Button } from 'react-bootstrap/'
+import Form from 'react-bootstrap/Form'
+// import './modal.css';
 
-const Modal = () => (
-    <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Edit Item Modal Button
-    </button>
 
-        <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">SHows something???</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        SOME TEXT FOR THE BODY
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-)
+function Example() {
+    const [show, setShow] = useState(false);
 
-export default Modal;
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+        <>
+            <Button variant="primary" onClick={handleShow}>
+                Launch demo modal
+        </Button>
+
+            <Modal show={show} onHide={handleClose} style={{ opacity: 1 }}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Item</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                    <Form.Group controlId="itemName">
+                            <Form.Label>Item Name</Form.Label>
+                            <Form.Control type="email" placeholder="Broken Laptop" />
+                        </Form.Group>              
+                        <Form.Group controlId="itemQuantity">
+                            <Form.Label>Quantity</Form.Label>
+                            <Form.Control type="email" placeholder="29184" />
+                        </Form.Group>
+                        <Form.Group controlId="itemPrice">
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control type="email" placeholder="$4.00" />
+                        </Form.Group>
+                        <Form.Group controlId="itemDescription">
+                            <Form.Label>Enter your new description</Form.Label>
+                            <Form.Control as="textarea" rows="3" />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+            </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+            </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+
+export default Example;

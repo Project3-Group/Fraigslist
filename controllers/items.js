@@ -17,7 +17,7 @@ module.exports = {
         db.Items
             .create(req.body)
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));   
+            .catch(err => res.status(422).json(err));
     },
     findById: function (req, res) {
         db.Items
@@ -33,16 +33,9 @@ module.exports = {
             .then(dbUpdate => res.json(dbUpdate))
             .catch(err => res.status(422).json(err));
     },
-    findAll: function (req, res) {
-        db.Items
-            .find(req.query)
-            .sort({ date: -1 })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
     findByUserId: function (req, res) {
         db.Items
-            .find({id: req.params.id})
+            .find({ id: req.params.id })
             // .populate('items')
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
