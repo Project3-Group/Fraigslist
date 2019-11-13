@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Card from '../components/Card'
 import { Link } from 'react-router-dom';
+import Modal from '../components/Modal'
+
 // import items from "../items.json";
 import API from '../utils/Api';
 
@@ -17,30 +19,24 @@ class UserItems extends Component {
         this.getUser();
     }
 
-
-
     getUser = () => {
         axios.get('/api/user/').then(response => {
-            // console.log(response.data.user._id)
+            console.log("logging response");
+            console.log(response.data)
             let id = response.data.user._id
             console.log(id)
             API.getUserItems(id).then(res => {
-                console.log('got something?')
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     items: res.data
                 })
             }).catch(err => console.log(err))
-        })
-        // .then(API.getUserItems(response.data.user._id)
-        //     .then(res => this.setState({ item: res.data }))
-        //     .catch(err => console.log(err)))
+        });
     }
 
     render() {
         return (
             <div>
-                test
                 {this.state.items.map(cards => (
                     <Card
                         id={cards._id}
@@ -54,6 +50,7 @@ class UserItems extends Component {
                         <Link to={"/items/" + cards._id}>Click</Link>
                     </Card>
                 ))}
+                <Modal />
             </div>
         )
     }

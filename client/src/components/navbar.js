@@ -65,7 +65,7 @@ class Navbar extends Component {
                     <div className="navbar-nav align-items-right">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">MERN Passport</h1>
+                        <h1 className="App-title">Super Dope Free Market</h1>
 
                         <Link to='/cart' className="ml-auto">
                             <button>
