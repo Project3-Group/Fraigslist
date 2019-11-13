@@ -35,9 +35,13 @@ const itemsSchema = new Schema({
     inCart: {
         type: Boolean, 
         default: false,
+    },
+    id: {
+        type: String,
+        required: true,
     }
+    // user: { type: Schema.Types.ObjectId, ref: 'User' },
 })
-
 
 const Items = mongoose.model('Items', itemsSchema)
 module.exports = Items

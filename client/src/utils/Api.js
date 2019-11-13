@@ -16,5 +16,10 @@ export default {
     updateItem: (id , data) => {
         // console.log("updating item: " + id);
         return axios.put('/api/items/' + id, data);
+    },
+    getUserItems: id => {
+        console.log("working???")
+        return axios.get('/api/store/' + id);
     }
+
 };

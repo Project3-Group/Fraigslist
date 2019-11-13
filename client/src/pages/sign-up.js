@@ -6,8 +6,8 @@ class Signup extends Component {
 		username: '',
 		password: '',
 		email: '',
-		// create error class to contain styling class for red highlight of missing inputs
-		confirmPassword: '',
+		className: "test"
+		// confirmPassword: '', // do this later
 	}
 
 	handleChange = event => {
@@ -15,6 +15,7 @@ class Signup extends Component {
 			[event.target.name]: event.target.value
 		})
 	}
+
 
 	handleSubmit = event => {
 		console.log('sign-up handleSubmit, username: ')
@@ -40,18 +41,22 @@ class Signup extends Component {
 					})
 				} else {
 					console.log(response.data.errors)
-					if(response.data.errors.email){
+					if (response.data.errors.email) {
 						console.log("Email is required")
-						// this.setState({
-        				// 	email: '',
-						// 	redirectTo: '/signup'
-						// })
+						this.setState({
+							email: '',
+							// redirectTo: '/signup'
+						})
 					}
-					if(response.data.errors.password){
-						console.log(response.data.errors.password.message)
+					if (response.data.errors.password) {
+						console.log("Password is required")
 					}
-					if(response.data.errors.username){
-						console.log(response.data.errors.username.message)
+					if (response.data.errors.username) {
+						console.log("Username is required")
+						this.setState({
+							className: "asdf"
+						})
+						console.log(this.state)
 					}
 
 				}
@@ -84,19 +89,19 @@ class Signup extends Component {
 						</div>
 					</div>
 					<div className="form-group">
-                            <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="email">Email: </label>
-                            </div>
-                            <div className="col-3 col-mr-auto">
-                                <input className="form-input"
-                                    placeholder="email (required)"
-                                    type="text"
-                                    name="email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </div>
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="email">Email: </label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								placeholder="email (required)"
+								type="text"
+								name="email"
+								value={this.state.email}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
 							<label className="form-label" htmlFor="password">Password: </label>
@@ -109,6 +114,7 @@ class Signup extends Component {
 								value={this.state.password}
 								onChange={this.handleChange}
 							/>
+
 						</div>
 					</div>
 					<div className="form-group ">

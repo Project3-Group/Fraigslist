@@ -8,7 +8,11 @@ import Home from './pages/home'
 import AddItem from './pages/additem'
 import SingleItem from './pages/singleItem'
 import NoMatch from './pages/no-match'
+
 import Cart from './pages/MyCart'
+
+import UserItems from './pages/useritems';
+
 
 import Navbar from './components/navbar'
 
@@ -16,7 +20,8 @@ import Navbar from './components/navbar'
 class App extends Component {
   state = {
     loggedIn: false,
-    username: null
+    username: null,
+    id: null
   }
 
   componentDidMount() {
@@ -37,7 +42,8 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          id: response.data.user._id
         })
       } else {
         console.log('Get user: no user');
@@ -53,7 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
             <p>Hello, {this.state.username}!!!!</p>
@@ -62,9 +68,14 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-            {this.state.loggedIn && 
-              <Route  path="/addItem" component={AddItem} />
-            }
+
+
+              {this.state.loggedIn &&
+                <Route exact path="/addItem" component={AddItem} />
+              }
+
+              <Route exact path="/useritems/:id" component={UserItems} />
+
 
               <Route path='/items/:id' component={SingleItem} />
 
@@ -85,6 +96,7 @@ class App extends Component {
               <Route path="/cart" component={Cart} /> 
 
               <Route component={NoMatch} />
+              
             </Switch>
           </div>
         </BrowserRouter>

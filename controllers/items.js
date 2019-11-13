@@ -5,12 +5,14 @@ console.log(db);
 module.exports = {
     findAll: function (req, res) {
         db.Items
-            .find(req.query)
+            .find({ quantity: { $gte:1}})
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
+        console.log("--------------------")
+        console.log(req.params.id)
         console.log("worked")
         db.Items
             .create(req.body)
@@ -29,6 +31,13 @@ module.exports = {
         db.Items
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbUpdate => res.json(dbUpdate))
+            .catch(err => res.status(422).json(err));
+    },
+    findByUserId: function (req, res) {
+        db.Items
+            .find({ id: req.params.id })
+            // .populate('items')
+            .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
     }
 };
