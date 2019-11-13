@@ -37,7 +37,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.11.0",
-    "spectre.css": "^0.5.8"
+    "spectre.css": "^0.5.8",
+    "styled-components": "^4.4.1"
   },
   "proxy": "http://localhost:8080"
 }
