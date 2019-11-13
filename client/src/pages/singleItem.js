@@ -54,7 +54,7 @@ class SingleItem extends Component {
         }
         if (!this.state.id) {
             alert("Can't purchase without logging in");
-            window.location.assign('/');
+            window.location.assign('/login');
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
                 alert('not enough');
