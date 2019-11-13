@@ -17,6 +17,8 @@ class UserItems extends Component {
         this.getUser();
     }
 
+
+
     getUser = () => {
         axios.get('/api/user/').then(response => {
             // console.log(response.data.user._id)
