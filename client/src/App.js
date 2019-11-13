@@ -8,7 +8,11 @@ import Home from './pages/home'
 import AddItem from './pages/additem'
 import SingleItem from './pages/singleItem'
 import NoMatch from './pages/no-match'
+
+import Cart from './pages/MyCart'
+
 import UserItems from './pages/useritems';
+
 
 import Navbar from './components/navbar'
 
@@ -56,12 +60,13 @@ class App extends Component {
           <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <p>Join the party, {this.state.username}!</p>
+            <p>Hello, {this.state.username}!!!!</p>
           }
           {/* Routes to different components */}
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
+
 
               {this.state.loggedIn &&
                 <Route exact path="/addItem" component={AddItem} />
@@ -69,7 +74,8 @@ class App extends Component {
 
               <Route exact path="/useritems/:id" component={UserItems} />
 
-              <Route exact path='/items/:id' component={SingleItem} />
+
+              <Route path='/items/:id' component={SingleItem} />
 
               <Route
                 path="/login"
@@ -85,6 +91,7 @@ class App extends Component {
                 render={() =>
                   <Signup />}
               />
+              <Route path="/cart" component={Cart} /> 
 
               <Route component={NoMatch} />
 

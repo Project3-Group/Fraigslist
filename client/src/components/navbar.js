@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
-import '../App.css';
+//import '../App.css';
 import axios from 'axios'
+import styled from 'styled-components';
+
 
 class Navbar extends Component {
 
@@ -28,12 +30,12 @@ class Navbar extends Component {
         console.log(this.props);
 
         return (
-            <div>
+            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">              
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
                         {loggedIn ? (
-                            <section className="navbar-section">
+                            <section className="navbar-nav align-items-left">
                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                                     <span className="text-secondary">logout</span></Link>
                                 <Link to="/" className="btn btn-link text-secondary">
@@ -47,7 +49,7 @@ class Navbar extends Component {
                                 </Link>
                             </section>
                         ) : (
-                                <section className="navbar-section">
+                                <section className="navbar-nav align-items-left">
                                     <Link to="/" className="btn btn-link text-secondary">
                                         <span className="text-secondary">home</span>
                                     </Link>
@@ -60,17 +62,33 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
-                    <div className="col-4 col-mr-auto">
+                    <div className="navbar-nav align-items-right">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title">Super Dope Free Market</h1>
+
+                        <Link to='/cart' className="ml-auto">
+                            <button>
+                                <i className="fas fa-cart-plus" />
+                                my cart
+                            </button>
+                        </Link>
                     </div>
                 </header>
-            </div>
+                </NavWrapper>
 
         );
 
     }
 }
+
+const NavWrapper = styled.nav`
+  background: var(--mainBlue);
+  .nav-link {
+    color: var(--mainWhite) !important;
+    font-size:1.3rem;
+    text-transform:capitalize;
+  }
+`;
 
 export default Navbar

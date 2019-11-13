@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+const nodemailer = require("nodemailer");
+const oauth2 = require("oauth2")
 
 
 class SingleItem extends Component {
@@ -39,20 +41,25 @@ class SingleItem extends Component {
         // console.log(numPurchased.quantity)
         // console.log(this.props.match.params.id)
 
+        /////////////////////////////////////////////////////////////
+        
+        /////////////////////////////////////////////////////////////
+
         if (this.state.item.quantity - numPurchased.quantity >= 0) {
             // console.log("sold!")
             // change page so that it gives an notification that user owes quantity*price
-
             API.updateItem(this.props.match.params.id, {
                 // new: true,
                 quantity: this.state.item.quantity - numPurchased.quantity
                 // need to update quantity in db after math 1 line above
             }).then(update => {
-                this.getItemDetails()
+                this.getItemDetails();
+                window.location.assign('/');
             }).catch(err => {
                 console.log(err)
             })
         } else {
+            alert('not enough');
             // change page so that it gives an notification that there isn't enough stock
             // console.log("not enough to sell")
         }
