@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 import axios from 'axios'
 
 class EditItem extends Component {
@@ -13,6 +15,7 @@ class EditItem extends Component {
         price: "",
         description: "",
         id: "",
+        updateModal: "",
     };
 
     componentDidMount() {
@@ -33,6 +36,15 @@ class EditItem extends Component {
         });
     };
 
+    redirect = () => {
+        window.location.assign('/useritems/'+this.props.match.params.id);
+    };
+    
+    toggleUpdateModal = () => {
+        this.setState({
+            updateModal: !this.state.updateModal
+        })
+    };
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
@@ -67,6 +79,7 @@ class EditItem extends Component {
             console.log("Cannot edit item");
             window.location.assign('/login');
         } else {
+            this.toggleUpdateModal();
             API.updateItem(this.props.match.params.id, {
                 quantity,
                 price,
@@ -147,15 +160,15 @@ class EditItem extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                                    <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
-                        <ModalHeader>No User Found!</ModalHeader>
-                        <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
+                <div>
+                <Modal toggle={this.redirect} isOpen={this.state.updateModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Updated!</ModalHeader>
+                        <ModalBody>Your item has been updated. Close to view your items.</ModalBody>
                         <ModalFooter>
-                            <Button color="warning" onClick={this.redirect}>Close</Button>
+                            <Button color="danger" onClick={this.redirect}>Close</Button>
                         </ModalFooter>
                     </Modal>
+                    </div>
             </div>
         );
     };
