@@ -6,15 +6,19 @@ const Card = props => (
     {console.log(props)}
     <div className="card">
       <div>{props.itemName}</div>
-      <img
-        id={props.id}
-        alt={props.name}
-        src={props.imageLink}
-      />
-      {/* we should find a better way to do this */}
+
       <form action={'/items/' + props.id} method='get'>
-        <button type='submit'>Item Page</button>
+        <button type='submit'> <img
+          id={props.id}
+          alt={props.name}
+          src={props.imageLink}
+        />
+        </button>
+
       </form>
+
+      {/* we should find a better way to do this */}
+      {/* <button type='submit'>Item Page</button> */}
 
       <form action={'/edititem/' + props.id} method='get'>
         <button type='submit'>Edit Item</button>

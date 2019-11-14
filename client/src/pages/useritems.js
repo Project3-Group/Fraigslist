@@ -49,8 +49,7 @@ class UserItems extends Component {
                                 quantity={cards.quantity}
                                 imageLink={cards.imageLink}
                                 description={cards.itemDescription}
-                            >
-                            </Card>
+                            />
                         ))}
                          
                         {/* {this.state.items.map(modals => (
