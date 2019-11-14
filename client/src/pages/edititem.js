@@ -60,7 +60,7 @@ class EditItem extends Component {
     };
 
     handleDeleteRequest = id => {
-        console.log(this.props.match.params.id)
+        // console.log(this.props.match.params.id)
         API.deleteItem(this.props.match.params.id)
           .then(res => this.toggleDeleteModal())        
           .catch(err => console.log(err));
@@ -90,7 +90,7 @@ class EditItem extends Component {
         let itemDescription = !this.state.description ? this.state.item.itemDescription : this.state.description;
 
         if (!this.state.id) {
-            console.log("Cannot edit item");
+            // console.log("Cannot edit item");
             window.location.assign('/login');
         } else {
             this.toggleUpdateModal();

@@ -36,7 +36,7 @@ class AddItem extends Component {
     };
 
     handleInputChange = event => {
-        console.log(event.target);
+        // console.log(event.target);
         const { name, value } = event.target;
         this.setState({
             [name]: value
@@ -61,7 +61,7 @@ class AddItem extends Component {
             // inCart: this.state.inCart,
 
         }
-        console.log(newItem);
+        // console.log(newItem);
 
         // axios
         API.addItem(newItem);
