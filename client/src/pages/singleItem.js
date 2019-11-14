@@ -5,7 +5,25 @@ import axios from 'axios'
 const nodemailer = require("nodemailer");
 const oauth2 = require("oauth2");
 
+var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+            type: "OAuth2",
+            user: "24hrbidder@gmail.com",
+            clientId: "866019043905-2gotkchkuachnjvvk9shbmhrrl3h5rkp.apps.googleusercontent.com",
+            clientSecret: "XXJxWdO8hDPyjaIE728-aVVr",
+            refreshToken: "1//04drX0PXBQmrDCgYIARAAGAQSNwF-L9IrtQJBpRF-8y2MGxbCWT_n-WNcxM4rDUQnwC3_FDb_6HfAMlaklr7LXQGD32-FGUqGNTk",
+            accessToken: "ya29.Il-wB7ZN6d83Yo2OgjsCUBU49FQsSTcrmLCapQRBCckvy09ktcDhO1S1df5WdOyzbuMWZQP-LuZ9JioZicKLXMw29EjM-qbOiW2kchBcRnTcvBIJnzaPrZzpuylY0oFwEQ"
+       
+    }
+})
 
+var mailOptions = {
+    from: '"24hr Bidder" <24hrbidder@gmail.com>',
+    to: "corona.orlando@gmail.com",
+    subject: "Nodemailer test",
+    text: "CONGRATS ITS WORKING"
+}
 
 class SingleItem extends Component {
     state = {
@@ -67,6 +85,14 @@ class SingleItem extends Component {
                 }).catch(err => {
                     console.log(err)
                 })
+                alert("Congrats").then(transporter.sendMail(mailOptions, function (err, res) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Email Sent");
+                
+                    }
+                }))
             }
 
         }
