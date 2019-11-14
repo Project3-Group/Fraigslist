@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
 import axios from 'axios'
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-const nodemailer = require("nodemailer");
-const oauth2 = require("oauth2");
 
-
-class SingleItem extends Component {
+class EditItem extends Component {
     state = {
         item: [],
         quantity: "",
+        price: "",
         id: ""
     };
 
@@ -32,10 +29,6 @@ class SingleItem extends Component {
         })
     }
 
-    showErrorModal = () => {
-
-    }
-
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
@@ -53,25 +46,24 @@ class SingleItem extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const numPurchased = {
-            quantity: this.state.quantity,
+        console.log(updatedItem)
+        const updatedItem = {
+            newQuantity: this.state.quantity,
+            newPrice: this.state.price
         }
         if (!this.state.id) {
-            // alert("Can't purchase without logging in");
+            console.log("Cannot edit item");
             window.location.assign('/login');
         } else {
-            if (this.state.item.quantity - numPurchased.quantity < 0) {
-                alert('not enough');
-            } else {
-                API.updateItem(this.props.match.params.id, {
-                    quantity: this.state.item.quantity - numPurchased.quantity
-                }).then(update => {
-                    this.getItemDetails();
-                    // window.location.assign('/');
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
+            API.updateItem(this.props.match.params.id, {
+                quantity: updatedItem.newQuantity,
+                price: updatedItem.newPrice
+            }).then(update => {
+                this.getItemDetails();
+                // window.location.assign('/');
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
 
@@ -80,15 +72,12 @@ class SingleItem extends Component {
             <div>
                 <div className="container">
                     <div className='row'>
-                        <div>Price: USD$: {this.state.item.price}</div>
-                        {console.log('ITEMS')}
-                        {console.log(this.state)}
-
+                        {/* {console.log('ITEMS')} */}
+                        {/* {console.log(this.state)} */}
                         <div>{this.state.item.itemName}</div>
                     </div>
 
                     <div className="row image-row">
-                        {/* columns not working the way outside of react maybe need reactstrap? */}
                         {/* {console.log(this.state.item)} */}
                         {/* add item detail stuff */}
                         <img
@@ -96,8 +85,10 @@ class SingleItem extends Component {
                             alt={this.state.item.itemName}
                             id={this.state.item.itemName} />
                     </div>
+
                     <div className='row'>
-                        <div>Quantity: {this.state.item.quantity}</div>
+                        <div>Current Quantity: {this.state.item.quantity}</div>
+                        <div>Current Price: USD$: {this.state.item.price}</div>
                     </div>
 
                     <div className="row description-row">
@@ -113,23 +104,22 @@ class SingleItem extends Component {
                                 type="number"
                                 value={this.state.quantity}
                                 onChange={this.handleInputChange}
-                                placeholder="quantity" />
+                                placeholder="New Quantity" />
+                            <input
+                                name="price"
+                                type="number"
+                                value={this.state.price}
+                                onChange={this.handleInputChange}
+                                placeholder="New Price" />
 
                             <button onClick={this.handleFormSubmit}>Submit</button>
                         </form>
                     </div>
                 </div>
-                <Modal isOpen={false}>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalBody>Modal Text</ModalBody>
-                    <ModalFooter>
-                        <Button color="primary">Close</Button>
-                    </ModalFooter>
-                </Modal>
             </div>
         )
 
     }
 }
 
-export default SingleItem;
+export default EditItem;

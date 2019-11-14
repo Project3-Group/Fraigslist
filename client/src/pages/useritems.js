@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Card from '../components/Card'
 import { Link } from 'react-router-dom';
-import Modal from '../components/Modal'
+// import Modal from '../components/Modal'
 
 // import items from "../items.json";
 import API from '../utils/Api';
@@ -53,7 +53,7 @@ class UserItems extends Component {
                             </Card>
                         ))}
                          
-                        {this.state.items.map(modals => (
+                        {/* {this.state.items.map(modals => (
                             <Modal
                                 itemName={modals.itemName}
                                 price={modals.price}
@@ -62,7 +62,7 @@ class UserItems extends Component {
                                 description={modals.itemDescription}
                             >
                             </Modal>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </div>

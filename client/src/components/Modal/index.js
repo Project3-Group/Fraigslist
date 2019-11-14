@@ -47,7 +47,7 @@ const Modals = props => {
                         <Form.Group controlId="itemDescription">
                             <Form.Label>Enter your new description</Form.Label>
                             <Form.Control
-                                as="textarea"
+                                type="text"
                                 name="itemDescription"
                                 placeholder={props.description}
                                 rows="3" />
