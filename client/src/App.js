@@ -6,7 +6,7 @@ import Signup from './pages/sign-up';
 import LoginForm from './pages/login-form';
 import Home from './pages/home';
 import AddItem from './pages/additem';
-import SingleItem from './pages/singleItem';
+import SingleItem from './pages/singleitem';
 import NoMatch from './pages/no-match';
 import UserItems from './pages/useritems';
 import EditItem from './pages/edititem';
@@ -99,8 +99,6 @@ class App extends Component {
             </Switch>
           </div>
         </BrowserRouter>
-
-
       </div>
     );
   }

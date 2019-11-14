@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+import './modals.css';
 import axios from 'axios'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const nodemailer = require("nodemailer");
@@ -13,7 +14,8 @@ class SingleItem extends Component {
         quantity: "",
         id: "",
         lowStockModal: false,
-        noUserModal: false
+        noUserModal: false,
+        purchasedModal: false
     };
 
     componentDidMount() {
@@ -44,6 +46,12 @@ class SingleItem extends Component {
     toggleNoUserModal = () => {
         this.setState({
             noUserModal: !this.state.noUserModal
+        })
+    };
+
+    togglePurchasedModal = () => {
+        this.setState({
+            purchasedModal: !this.state.purchasedModal
         })
     };
 
@@ -78,6 +86,7 @@ class SingleItem extends Component {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
                 this.toggleLowStockModal();
             } else {
+                this.togglePurchasedModal();
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
@@ -96,8 +105,6 @@ class SingleItem extends Component {
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
-                        {console.log('ITEMS')}
-                        {console.log(this.state)}
 
                         <div>{this.state.item.itemName}</div>
                     </div>
@@ -112,7 +119,10 @@ class SingleItem extends Component {
                             id={this.state.item.itemName} />
                     </div>
                     <div className='row'>
-                        <div>Quantity: {this.state.item.quantity}</div>
+                        <div style={{ display: "block" }}>Quantity: {this.state.item.quantity}</div>
+                    </div>
+                    <div className='row'>
+                        <div style={{ display: "block" }}>Item Description: {this.state.item.itemDescription}</div>
                     </div>
 
                     <div className="row description-row">
@@ -135,24 +145,33 @@ class SingleItem extends Component {
                     </div>
                 </div>
 
-                <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
-                    <ModalHeader>Not Enough Stock!</ModalHeader>
-                    <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.toggleLowStockModal}>Close</Button>
-                    </ModalFooter>
-                </Modal>
+                <div>
+                    <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Not Enough Stock!</ModalHeader>
+                        <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
+                        <ModalFooter>
+                            <Button color="warning" onClick={this.toggleLowStockModal}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
 
-                <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
-                    <ModalHeader>No User Found!</ModalHeader>
-                    <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.redirect}>Close</Button>
-                    </ModalFooter>
-                </Modal>
+                    <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
+                        <ModalHeader>No User Found!</ModalHeader>
+                        <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
+                        <ModalFooter>
+                            <Button color="warning" onClick={this.redirect}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+
+                    <Modal toggle={this.togglePurchasedModal} isOpen={this.state.purchasedModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Purchased!</ModalHeader>
+                        <ModalBody>You just bought this item. Check your email.</ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.togglePurchasedModal}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
             </div>
         )
-
     }
 }
 
