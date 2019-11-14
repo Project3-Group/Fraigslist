@@ -21,5 +21,4 @@ export default {
         console.log("working???")
         return axios.get('/api/store/' + id);
     }
-
 };

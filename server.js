@@ -10,7 +10,9 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
 const app = express();
 const PORT = process.env.PORT || 8080;
-// Route requires
+const nodemailer = require("nodemailer");
+const oauth2 = require("oauth2")
+
 
 const user = require('./routes/api/user')
 
@@ -39,6 +41,39 @@ app.use(
 // Passport
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
+
+app.post("/mail", (req, res) => {
+    console.log("Email route hit");
+    // console.log(req.body.item);
+    var transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "OAuth2",
+                user: "24hrbidder@gmail.com",
+                clientId: "866019043905-2gotkchkuachnjvvk9shbmhrrl3h5rkp.apps.googleusercontent.com",
+                clientSecret: "XXJxWdO8hDPyjaIE728-aVVr",
+                refreshToken: "1//04drX0PXBQmrDCgYIARAAGAQSNwF-L9IrtQJBpRF-8y2MGxbCWT_n-WNcxM4rDUQnwC3_FDb_6HfAMlaklr7LXQGD32-FGUqGNTk",
+                accessToken: "ya29.Il-wB7ZN6d83Yo2OgjsCUBU49FQsSTcrmLCapQRBCckvy09ktcDhO1S1df5WdOyzbuMWZQP-LuZ9JioZicKLXMw29EjM-qbOiW2kchBcRnTcvBIJnzaPrZzpuylY0oFwEQ"
+
+            }
+        })
+
+        var mailOptions = {
+            from: '"24hr Bidder" <24hrbidder@gmail.com>',
+            to: "corona.orlando@gmail.com",
+            subject: "Nodemailer test",
+            text: "It's working"
+        }
+        transporter.sendMail(mailOptions, function (err, res) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Email Sent");
+        
+            }
+        })
+        
+})
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 // Routes
