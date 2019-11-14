@@ -3,7 +3,7 @@ import './card.css';
 
 const Card = props => (
   <div className="image-group">
-    {console.log(props)}
+    {/* {console.log(props)} */}
     <div className="card">
       <div>{props.itemName}</div>
 

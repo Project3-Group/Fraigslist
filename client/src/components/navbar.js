@@ -10,10 +10,10 @@ class Navbar extends Component {
 
     logout = event => {
         event.preventDefault()
-        console.log('logging out')
+        // console.log('logging out')
         window.location.assign('/');
         axios.post('/api/user/logout').then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             if (response.status === 200) {
                 this.props.updateUser({
                     loggedIn: false,
@@ -27,8 +27,8 @@ class Navbar extends Component {
 
     render() {
         const loggedIn = this.props.loggedIn;
-        console.log('navbar render, props: ')
-        console.log(this.props);
+        // console.log('navbar render, props: ')
+        // console.log(this.props);
 
         return (
             <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">              

@@ -16,6 +16,7 @@ class EditItem extends Component {
         description: "",
         id: "",
         updateModal: "",
+        deleteItemModal: "",
     };
 
     componentDidMount() {
@@ -46,11 +47,24 @@ class EditItem extends Component {
         })
     };
 
+    toggleDeleteModal = () => {
+        this.setState({
+            deleteItemModal: !this.state.deleteItemModal
+        })
+    };
+
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
             .catch(err => console.log(err));
     };
+
+    handleDeleteRequest = id => {
+        // console.log(this.props.match.params.id)
+        API.deleteItem(this.props.match.params.id)
+          .then(res => this.toggleDeleteModal())        
+          .catch(err => console.log(err));
+      };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -76,7 +90,7 @@ class EditItem extends Component {
         let itemDescription = !this.state.description ? this.state.item.itemDescription : this.state.description;
 
         if (!this.state.id) {
-            console.log("Cannot edit item");
+            // console.log("Cannot edit item");
             window.location.assign('/login');
         } else {
             this.toggleUpdateModal();
@@ -98,7 +112,7 @@ class EditItem extends Component {
             <div>
                 <div className="container">
                     <div className='row'>
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div>{this.state.item.itemName}</div>
                             <div className="row image-row">
                                 {/* add item detail stuff */}
@@ -118,7 +132,7 @@ class EditItem extends Component {
                             </div>
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div>Submit your new information below.</div>
                             <form>
                                 <div className='row'>
@@ -158,12 +172,28 @@ class EditItem extends Component {
                                 <button onClick={this.handleFormSubmit}>Submit</button>
                             </form>
                         </div>
+
+                        <div className="col-md-4">
+                            <div>If you don't want this item anymore, you can edit the amount to be 0 and hide it from the store, or hit the delete button and remove it.</div>
+
+                            <button onClick={() => this.handleDeleteRequest(this.props.match.params.id)}>Delete Item</button>
+
+                        </div>
+
                     </div>
                 </div>
                 <div>
                 <Modal toggle={this.redirect} isOpen={this.state.updateModal} style={{ opacity: 1 }}>
                         <ModalHeader>Updated!</ModalHeader>
                         <ModalBody>Your item has been updated. Close to view your items.</ModalBody>
+                        <ModalFooter>
+                            <Button color="danger" onClick={this.redirect}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+
+                    <Modal toggle={this.redirect} isOpen={this.state.deleteItemModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Item removed!</ModalHeader>
+                        <ModalBody>This item has been removed from your store.</ModalBody>
                         <ModalFooter>
                             <Button color="danger" onClick={this.redirect}>Close</Button>
                         </ModalFooter>
