@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
 import axios from 'axios'
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const nodemailer = require("nodemailer");
 const oauth2 = require("oauth2");
 
@@ -11,7 +11,8 @@ class SingleItem extends Component {
     state = {
         item: [],
         quantity: "",
-        id: ""
+        id: "",
+        modalVisible: false
     };
 
     componentDidMount() {
@@ -32,8 +33,10 @@ class SingleItem extends Component {
         })
     }
 
-    showErrorModal = () => {
-
+    toggleModal = () => {
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        })
     }
 
     getItemDetails = () => {
@@ -61,7 +64,8 @@ class SingleItem extends Component {
             window.location.assign('/login');
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
-                alert('not enough');
+                // alert('not enough');
+                this.toggleModal();
             } else {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
@@ -119,9 +123,10 @@ class SingleItem extends Component {
                         </form>
                     </div>
                 </div>
-                <Modal isOpen={false}>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalBody>Modal Text</ModalBody>
+                <Button color="primary" onClick={this.toggleModal}>Click</Button>
+                <Modal toggle={this.toggleModal} isOpen={this.state.modalVisible} style={{ opacity: 1 }}>
+                    <ModalHeader>Warning!</ModalHeader>
+                    <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
                     <ModalFooter>
                         <Button color="primary">Close</Button>
                     </ModalFooter>
