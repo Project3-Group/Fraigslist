@@ -36,6 +36,10 @@ class AddItem extends Component {
         })
     }
 
+    uploadImage = () => {
+
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
 
@@ -78,37 +82,38 @@ class AddItem extends Component {
                         type="text"
                         value={this.state.itemName}
                         onChange={this.handleInputChange}
-                        placeholder="itemName" />
+                        placeholder="itemName" /><br></br>
                     <input
                         name="imageLink"
                         type="text"
+                        className='new-image'
                         value={this.state.imageLink}
-                        onChange={this.handleInputChange}
-                        placeholder="imageLink" />
+                        onChange={this.uploadImage}
+                        placeholder="imageLink" /><br></br>
                     <input
                         name="quantity"
                         type="number"
                         value={this.state.quantity}
                         onChange={this.handleInputChange}
-                        placeholder="quantity" />
+                        placeholder="quantity" /><br></br>
                     <input
                         name="price"
                         value={this.state.price}
                         onChange={this.handleInputChange}
                         type="number"
-                        placeholder="price" />
+                        placeholder="price" /><br></br>
                     <input
                         name="company"
                         value={this.state.company}
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="company" />
+                        placeholder="company" /><br></br>
                     <input
                         name="itemDescription"
                         type="text"
                         value={this.state.itemDescription}
                         onChange={this.handleInputChange}
-                        placeholder="itemDescription" />
+                        placeholder="itemDescription" /><br></br>
                     <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
             </div>
