@@ -21,10 +21,10 @@ class UserItems extends Component {
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
-            console.log("logging response");
-            console.log(response.data)
+            // console.log("logging response");
+            // console.log(response.data)
             let id = response.data.user._id
-            console.log(id)
+            // console.log(id)
             API.getUserItems(id).then(res => {
                 // console.log(res)
                 let data=res.data
