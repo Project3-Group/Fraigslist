@@ -16,7 +16,7 @@ const Card = props => (
       </form>
       <div>Quantity: {props.quantity}</div>
       <div>Price: US ${props.price}</div>
-      <div>{props.description}</div>
+      <div>Item Description: {props.description}</div>
     </div>
   </div>
 )

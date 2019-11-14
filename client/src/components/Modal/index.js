@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 // import './modal.css';
 
 
-function Modals() {
+const Modals = props => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -23,21 +23,34 @@ function Modals() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                    <Form.Group controlId="itemName">
+                        <Form.Group controlId="itemName">
                             <Form.Label>Item Name</Form.Label>
-                            <Form.Control type="email" placeholder="Broken Laptop" />
-                        </Form.Group>              
+                            <Form.Control
+                                type="text"
+                                name="itemName"
+                                placeholder={props.itemName} />
+                        </Form.Group>
                         <Form.Group controlId="itemQuantity">
                             <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="email" placeholder="29184" />
+                            <Form.Control
+                                type="text"
+                                name="quantity"
+                                placeholder={props.quantity} />
                         </Form.Group>
                         <Form.Group controlId="itemPrice">
                             <Form.Label>Price</Form.Label>
-                            <Form.Control type="email" placeholder="$4.00" />
+                            <Form.Control
+                                type="text"
+                                name="price"
+                                placeholder={props.price} />
                         </Form.Group>
                         <Form.Group controlId="itemDescription">
                             <Form.Label>Enter your new description</Form.Label>
-                            <Form.Control as="textarea" rows="3" />
+                            <Form.Control
+                                as="textarea"
+                                name="itemDescription"
+                                placeholder={props.description}
+                                rows="3" />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -51,7 +64,7 @@ function Modals() {
                 </Modal.Footer>
             </Modal>
 
-            
+
         </>
     );
 }

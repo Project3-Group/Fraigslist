@@ -27,8 +27,9 @@ class UserItems extends Component {
             console.log(id)
             API.getUserItems(id).then(res => {
                 // console.log(res)
+                let data=res.data
                 this.setState({
-                    items: res.data
+                    items: data
                 })
             }).catch(err => console.log(err))
         });
@@ -37,20 +38,33 @@ class UserItems extends Component {
     render() {
         return (
             <div>
-                {this.state.items.map(cards => (
-                    <Card
-                        id={cards._id}
-                        key={cards._id}
-                        itemName={cards.itemName}
-                        price={cards.price}
-                        quantity={cards.quantity}
-                        imageLink={cards.imageLink}
-                    >
-                        {/* description={cards.itemDescription} save for dynamically created pages */}
-                        <Link to={"/items/" + cards._id}>Click</Link>
-                    </Card>
-                ))}
-                <Modal />
+                <div className="container">
+                    <div className="row">
+                        {this.state.items.map(cards => (
+                            <Card
+                                id={cards._id}
+                                key={cards._id}
+                                itemName={cards.itemName}
+                                price={cards.price}
+                                quantity={cards.quantity}
+                                imageLink={cards.imageLink}
+                                description={cards.itemDescription}
+                            >
+                            </Card>
+                        ))}
+                         
+                        {this.state.items.map(modals => (
+                            <Modal
+                                itemName={modals.itemName}
+                                price={modals.price}
+                                quantity={modals.quantity}
+                                imageLink={modals.imageLink}
+                                description={modals.itemDescription}
+                            >
+                            </Modal>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }

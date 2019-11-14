@@ -33,8 +33,6 @@ class Home extends Component {
                                 quantity={cards.quantity}
                                 imageLink={cards.imageLink}
                             >
-                                {/* description={cards.itemDescription} save for dynamically created pages */}
-                                <Link to={"/items/" + cards._id}>Click</Link>
                             </Card>
                         ))}
                     </div>

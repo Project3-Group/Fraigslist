@@ -68,9 +68,7 @@ class SingleItem extends Component {
                     console.log(err)
                 })
             }
-
         }
-
     }
 
     render() {
