@@ -12,13 +12,15 @@ class SingleItem extends Component {
         item: [],
         quantity: "",
         id: "",
-        modalVisible: false
+        lowStockModal: false,
+        noUserModal: false
     };
 
     componentDidMount() {
         this.getItemDetails();
         this.getUser();
-    }
+    };
+
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
@@ -31,19 +33,30 @@ class SingleItem extends Component {
                 })
             }
         })
+    };
+
+    toggleLowStockModal = () => {
+        this.setState({
+            lowStockModal: !this.state.lowStockModal
+        })
+    };
+
+    toggleNoUserModal = () => {
+        this.setState({
+            noUserModal: !this.state.noUserModal
+        })
+    };
+
+    redirect = () => {
+        window.location.assign('/login');
     }
 
-    toggleModal = () => {
-        this.setState({
-            modalVisible: !this.state.modalVisible
-        })
-    }
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
             .catch(err => console.log(err));
-    }
+    };
 
     handleInputChange = event => {
         // console.log(event.target);
@@ -61,11 +74,12 @@ class SingleItem extends Component {
         }
         if (!this.state.id) {
             // alert("Can't purchase without logging in");
-            window.location.assign('/login');
+            this.toggleNoUserModal();
+            // window.location.assign('/login');
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
                 // alert('not enough');
-                this.toggleModal();
+                this.toggleLowStockModal();
             } else {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
@@ -123,12 +137,22 @@ class SingleItem extends Component {
                         </form>
                     </div>
                 </div>
-                <Button color="primary" onClick={this.toggleModal}>Click</Button>
-                <Modal toggle={this.toggleModal} isOpen={this.state.modalVisible} style={{ opacity: 1 }}>
+                {/* this button is only for testing */}
+                <Button color="primary" onClick={this.toggleLowStockModal}>Click</Button> 
+
+                <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
                     <ModalHeader>Warning!</ModalHeader>
                     <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
                     <ModalFooter>
-                        <Button color="primary">Close</Button>
+                        <Button color="primary" onClick={this.toggleLowStockModal}>Close</Button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
+                    <ModalHeader>Test</ModalHeader>
+                    <ModalBody>spamasdifniasugieauhdgnhiasdgiashdgiyyaghiuhasdgih</ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.redirect}>Close</Button>
                     </ModalFooter>
                 </Modal>
             </div>
