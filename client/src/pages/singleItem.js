@@ -134,8 +134,6 @@ class SingleItem extends Component {
                         </form>
                     </div>
                 </div>
-                {/* this button is only for testing */}
-                <Button color="primary" onClick={this.toggleLowStockModal}>Click</Button> 
 
                 <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
                     <ModalHeader>Not Enough Stock!</ModalHeader>
