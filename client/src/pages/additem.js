@@ -75,8 +75,6 @@ class AddItem extends Component {
         this.toggleitemAddedModal();
     };
 
-    // When the component mounts, load the next dog to be displayed
-
     render() {
         return (
             <div>

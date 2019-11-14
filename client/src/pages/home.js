@@ -17,7 +17,7 @@ class Home extends Component {
                 items: res.data
             });
         });
-    }
+    };
 
     render() {
         return (
@@ -38,9 +38,8 @@ class Home extends Component {
                     </div>
                 </div>
             </div>
-        )
-
-    }
-}
+        );
+    };
+};
 
 export default Home

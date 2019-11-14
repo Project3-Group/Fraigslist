@@ -8,14 +8,14 @@ class LoginForm extends Component {
         username: '',
         password: '',
         redirectTo: null
-    }
+    };
 
 
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
-        })
-    }
+        });
+    };
 
     handleSubmit = event => {
         event.preventDefault()
@@ -24,7 +24,6 @@ class LoginForm extends Component {
             .post('/api/user/login', {
                 username: this.state.username,
                 password: this.state.password,
-
             })
             .then(response => {
                 console.log('login response: ')

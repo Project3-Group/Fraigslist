@@ -24,25 +24,23 @@ class EditItem extends Component {
             } else {
                 this.setState({
                     id: response.data.user._id
-                })
-            }
-        })
-    }
+                });
+            };
+        });
+    };
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
             .catch(err => console.log(err));
-    }
+    };
 
     handleInputChange = event => {
-        // console.log(event.target);
         const { name, value } = event.target;
-
         this.setState({
             [name]: value
-        })
-    }
+        });
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -50,7 +48,7 @@ class EditItem extends Component {
         const updatedItem = {
             newQuantity: this.state.quantity,
             newPrice: this.state.price
-        }
+        };
         if (!this.state.id) {
             console.log("Cannot edit item");
             window.location.assign('/login');
@@ -63,22 +61,19 @@ class EditItem extends Component {
                 // window.location.assign('/');
             }).catch(err => {
                 console.log(err)
-            })
-        }
-    }
+            });
+        };
+    };
 
     render() {
         return (
             <div>
                 <div className="container">
                     <div className='row'>
-                        {/* {console.log('ITEMS')} */}
-                        {/* {console.log(this.state)} */}
                         <div>{this.state.item.itemName}</div>
                     </div>
 
                     <div className="row image-row">
-                        {/* {console.log(this.state.item)} */}
                         {/* add item detail stuff */}
                         <img
                             src={this.state.item.imageLink}
@@ -92,10 +87,7 @@ class EditItem extends Component {
                     </div>
 
                     <div className="row description-row">
-
-                        {/* stuff to handle item purchases */}
                         Purchase Quantity:
-                        {/* figure out how to make this box smaller - aethetic purposes only */}
                     </div>
                     <div className='row'>
                         <form>
@@ -117,9 +109,8 @@ class EditItem extends Component {
                     </div>
                 </div>
             </div>
-        )
-
-    }
-}
+        );
+    };
+};
 
 export default EditItem;
