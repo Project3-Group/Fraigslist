@@ -4,9 +4,8 @@ import './pages.css';
 import './modals.css';
 import axios from 'axios'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-const nodemailer = require("nodemailer");
-const oauth2 = require("oauth2");
-
+// const nodemailer = require("nodemailer");
+// const oauth2 = require("oauth2");
 
 class SingleItem extends Component {
     state = {
@@ -94,10 +93,23 @@ class SingleItem extends Component {
                     // window.location.assign('/');
                 }).catch(err => {
                     console.log(err)
-                });
-            };
-        };
-    };
+                })
+                alert("Congrats")
+                //build body object to include in call
+                let body = {
+                    company: this.state.company,
+                    imageLink: this.state.imageLink,
+                    itemDescription: this.state.itemDescription,
+                    itemName: this.state.itemName,
+                    price: this.state.price
+                }
+                axios.post("/mail", body).then(response => console.log(response)
+                )
+            }
+
+        }
+
+    }
 
     render() {
         return (
