@@ -30,9 +30,9 @@ class SingleItem extends Component {
             } else {
                 this.setState({
                     id: response.data.user._id
-                })
-            }
-        })
+                });
+            };
+        });
     };
 
     toggleLowStockModal = () => {
@@ -49,7 +49,7 @@ class SingleItem extends Component {
 
     redirect = () => {
         window.location.assign('/login');
-    }
+    };
 
 
     getItemDetails = () => {
@@ -64,8 +64,8 @@ class SingleItem extends Component {
 
         this.setState({
             [name]: value
-        })
-    }
+        });
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -73,12 +73,9 @@ class SingleItem extends Component {
             quantity: this.state.quantity,
         }
         if (!this.state.id) {
-            // alert("Can't purchase without logging in");
             this.toggleNoUserModal();
-            // window.location.assign('/login');
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
-                // alert('not enough');
                 this.toggleLowStockModal();
             } else {
                 API.updateItem(this.props.match.params.id, {
@@ -88,10 +85,10 @@ class SingleItem extends Component {
                     // window.location.assign('/');
                 }).catch(err => {
                     console.log(err)
-                })
-            }
-        }
-    }
+                });
+            };
+        };
+    };
 
     render() {
         return (
@@ -141,7 +138,7 @@ class SingleItem extends Component {
                 <Button color="primary" onClick={this.toggleLowStockModal}>Click</Button> 
 
                 <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
-                    <ModalHeader>Warning!</ModalHeader>
+                    <ModalHeader>Not Enough Stock!</ModalHeader>
                     <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.toggleLowStockModal}>Close</Button>
@@ -149,8 +146,8 @@ class SingleItem extends Component {
                 </Modal>
 
                 <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
-                    <ModalHeader>Test</ModalHeader>
-                    <ModalBody>spamasdifniasugieauhdgnhiasdgiashdgiyyaghiuhasdgih</ModalBody>
+                    <ModalHeader>No User Found!</ModalHeader>
+                    <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.redirect}>Close</Button>
                     </ModalFooter>
