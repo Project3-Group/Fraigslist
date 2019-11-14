@@ -9,8 +9,8 @@ const userSchema = new Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, unique: false, required: true },
     email: { type: String, unique: true, required: true },
-    items: { type: Schema.Types.ObjectId, ref: 'Items' }
-    // add checkbox boolean true false required in order to sign up
+    items: { type: Schema.Types.ObjectId, ref: 'Items' },
+    // isChecked: { Boolean, required: true }
 
 })
 

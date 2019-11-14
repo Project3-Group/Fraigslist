@@ -6,14 +6,27 @@ class Signup extends Component {
 		username: '',
 		password: '',
 		email: '',
+		isChecked: false,
 		className: "test"
 		// confirmPassword: '', // do this later
 	}
 
 	handleChange = event => {
+		console.log(event.target)
 		this.setState({
 			[event.target.name]: event.target.value
 		})
+	}
+
+	handleCheck = event => {
+		this.setState(({ isChecked }) => {
+			return {
+				isChecked: !isChecked
+			}
+		}, function () {
+			console.log(this.state.isChecked, "updated value");
+		});
+		console.log(event.target.checked)
 	}
 
 
@@ -62,22 +75,26 @@ class Signup extends Component {
 				} else {
 					console.log(response.data.errors)
 					if (response.data.errors.email) {
-						alert("Email is required")
+						console.log("Email is required")
 						this.setState({
 							email: '',
 							// redirectTo: '/signup'
 						})
 					}
 					if (response.data.errors.password) {
-						alert("Password is required")
+						console.log("Password is required")
 					}
-					if (response.data.errors.username) {
-						alert("Username is required")
-						this.setState({
-							className: "asdf"
-						})
-						console.log(this.state)
-					}
+					// if (this.state.isChecked == false) {
+					// 	console.log("Check the box")
+					// }
+					
+					// if (response.data.errors.username) {
+					// 	console.log("Username is required")
+					// 	this.setState({
+					// 		className: "asdf"
+					// 	})
+					// 	console.log(this.state)
+					// }
 
 				}
 			}).catch(error => {
@@ -91,7 +108,9 @@ class Signup extends Component {
 	render() {
 		return (
 			<div className="SignupForm">
+
 				<form className="form-horizontal">
+
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
 							<label className="form-label" htmlFor="username">Username</label>
@@ -107,6 +126,7 @@ class Signup extends Component {
 							/>
 						</div>
 					</div>
+
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
 							<label className="form-label" htmlFor="email">Email: </label>
@@ -121,6 +141,7 @@ class Signup extends Component {
 							/>
 						</div>
 					</div>
+
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
 							<label className="form-label" htmlFor="password">Password: </label>
@@ -133,9 +154,23 @@ class Signup extends Component {
 								value={this.state.password}
 								onChange={this.handleChange}
 							/>
-
 						</div>
 					</div>
+
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-check-label" htmlFor="checkbox">Confirm</label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-check-input"
+								type="checkbox"
+								name="checkbox"
+								isChecked={this.state.checkbox}
+								onChange={this.handleCheck}
+							/>
+						</div>
+					</div>
+
 					<div className="form-group ">
 						<div className="col-7"></div>
 						<button
@@ -146,7 +181,6 @@ class Signup extends Component {
 					</div>
 				</form>
 			</div>
-
 		)
 	}
 }

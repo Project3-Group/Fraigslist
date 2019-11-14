@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
+import './modals.css';
 import axios from 'axios'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const nodemailer = require("nodemailer");
 const oauth2 = require("oauth2");
-
 
 
 class SingleItem extends Component {
     state = {
         item: [],
         quantity: "",
-        id: ""
+        id: "",
+        lowStockModal: false,
+        noUserModal: false,
+        purchasedModal: false
     };
 
     componentDidMount() {
         this.getItemDetails();
         this.getUser();
-    }
+    };
+
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
@@ -27,16 +32,39 @@ class SingleItem extends Component {
             } else {
                 this.setState({
                     id: response.data.user._id
-                })
-            }
+                });
+            };
+        });
+    };
+
+    toggleLowStockModal = () => {
+        this.setState({
+            lowStockModal: !this.state.lowStockModal
         })
-    }
+    };
+
+    toggleNoUserModal = () => {
+        this.setState({
+            noUserModal: !this.state.noUserModal
+        })
+    };
+
+    togglePurchasedModal = () => {
+        this.setState({
+            purchasedModal: !this.state.purchasedModal
+        })
+    };
+
+    redirect = () => {
+        window.location.assign('/login');
+    };
+
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
             .catch(err => console.log(err));
-    }
+    };
 
     handleInputChange = event => {
         // console.log(event.target);
@@ -44,8 +72,8 @@ class SingleItem extends Component {
 
         this.setState({
             [name]: value
-        })
-    }
+        });
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -53,25 +81,23 @@ class SingleItem extends Component {
             quantity: this.state.quantity,
         }
         if (!this.state.id) {
-            alert("Can't purchase without logging in");
-            window.location.assign('/login');
+            this.toggleNoUserModal();
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
-                alert('not enough');
+                this.toggleLowStockModal();
             } else {
+                this.togglePurchasedModal();
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
                     this.getItemDetails();
-                    window.location.assign('/');
+                    // window.location.assign('/');
                 }).catch(err => {
                     console.log(err)
-                })
-            }
-
-        }
-
-    }
+                });
+            };
+        };
+    };
 
     render() {
         return (
@@ -79,8 +105,6 @@ class SingleItem extends Component {
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
-                        {console.log('ITEMS')}
-                        {console.log(this.state)}
 
                         <div>{this.state.item.itemName}</div>
                     </div>
@@ -95,7 +119,10 @@ class SingleItem extends Component {
                             id={this.state.item.itemName} />
                     </div>
                     <div className='row'>
-                        <div>Quantity: {this.state.item.quantity}</div>
+                        <div style={{ display: "block" }}>Quantity: {this.state.item.quantity}</div>
+                    </div>
+                    <div className='row'>
+                        <div style={{ display: "block" }}>Item Description: {this.state.item.itemDescription}</div>
                     </div>
 
                     <div className="row description-row">
@@ -117,9 +144,34 @@ class SingleItem extends Component {
                         </form>
                     </div>
                 </div>
+
+                <div>
+                    <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Not Enough Stock!</ModalHeader>
+                        <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
+                        <ModalFooter>
+                            <Button color="warning" onClick={this.toggleLowStockModal}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+
+                    <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
+                        <ModalHeader>No User Found!</ModalHeader>
+                        <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
+                        <ModalFooter>
+                            <Button color="warning" onClick={this.redirect}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+
+                    <Modal toggle={this.togglePurchasedModal} isOpen={this.state.purchasedModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Purchased!</ModalHeader>
+                        <ModalBody>You just bought this item. Check your email.</ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.togglePurchasedModal}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
             </div>
         )
-
     }
 }
 
