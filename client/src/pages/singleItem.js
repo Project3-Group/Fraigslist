@@ -2,22 +2,25 @@ import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
 import axios from 'axios'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const nodemailer = require("nodemailer");
 const oauth2 = require("oauth2");
-
 
 
 class SingleItem extends Component {
     state = {
         item: [],
         quantity: "",
-        id: ""
+        id: "",
+        lowStockModal: false,
+        noUserModal: false
     };
 
     componentDidMount() {
         this.getItemDetails();
         this.getUser();
-    }
+    };
+
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
@@ -27,16 +30,33 @@ class SingleItem extends Component {
             } else {
                 this.setState({
                     id: response.data.user._id
-                })
-            }
+                });
+            };
+        });
+    };
+
+    toggleLowStockModal = () => {
+        this.setState({
+            lowStockModal: !this.state.lowStockModal
         })
-    }
+    };
+
+    toggleNoUserModal = () => {
+        this.setState({
+            noUserModal: !this.state.noUserModal
+        })
+    };
+
+    redirect = () => {
+        window.location.assign('/login');
+    };
+
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
             .catch(err => console.log(err));
-    }
+    };
 
     handleInputChange = event => {
         // console.log(event.target);
@@ -44,8 +64,8 @@ class SingleItem extends Component {
 
         this.setState({
             [name]: value
-        })
-    }
+        });
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -53,25 +73,22 @@ class SingleItem extends Component {
             quantity: this.state.quantity,
         }
         if (!this.state.id) {
-            alert("Can't purchase without logging in");
-            window.location.assign('/login');
+            this.toggleNoUserModal();
         } else {
             if (this.state.item.quantity - numPurchased.quantity < 0) {
-                alert('not enough');
+                this.toggleLowStockModal();
             } else {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
                     this.getItemDetails();
-                    window.location.assign('/');
+                    // window.location.assign('/');
                 }).catch(err => {
                     console.log(err)
-                })
-            }
-
-        }
-
-    }
+                });
+            };
+        };
+    };
 
     render() {
         return (
@@ -117,6 +134,22 @@ class SingleItem extends Component {
                         </form>
                     </div>
                 </div>
+
+                <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
+                    <ModalHeader>Not Enough Stock!</ModalHeader>
+                    <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggleLowStockModal}>Close</Button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
+                    <ModalHeader>No User Found!</ModalHeader>
+                    <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.redirect}>Close</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         )
 

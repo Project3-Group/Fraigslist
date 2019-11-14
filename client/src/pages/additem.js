@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from '../utils/Api';
 import axios from 'axios'
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class AddItem extends Component {
     state = {
@@ -12,7 +12,8 @@ class AddItem extends Component {
         itemDescription: "",
         company: "",
         inCart: false,
-        id: ""
+        id: "",
+        itemAddedModal: false
     };
 
     componentDidMount() {
@@ -27,6 +28,12 @@ class AddItem extends Component {
             })
         })
     }
+
+    toggleitemAddedModal = () => {
+        this.setState({
+            itemAddedModal: !this.state.itemAddedModal
+        })
+    };
 
     handleInputChange = event => {
         console.log(event.target);
@@ -65,9 +72,8 @@ class AddItem extends Component {
                 company: "",
             }
         )
-    }
-
-    // When the component mounts, load the next dog to be displayed
+        this.toggleitemAddedModal();
+    };
 
     render() {
         return (
@@ -111,6 +117,14 @@ class AddItem extends Component {
                         placeholder="itemDescription" />
                     <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
+
+                <Modal toggle={this.toggleitemAddedModal} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
+                    <ModalHeader>Item Added!</ModalHeader>
+                    <ModalBody>Your item has been added.</ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggleitemAddedModal}>Close</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         );
     }
