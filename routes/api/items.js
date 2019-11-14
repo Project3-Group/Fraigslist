@@ -11,5 +11,6 @@ router.route("/")
 router.route("/:id")
     .get(itemsContr.findById)
     .put(itemsContr.update)
+    .delete(itemsContr.remove);
 
 module.exports = router;

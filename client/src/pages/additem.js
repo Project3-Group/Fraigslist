@@ -43,6 +43,10 @@ class AddItem extends Component {
         })
     }
 
+    redirect = () => {
+        window.location.assign('/useritems/'+ this.props.match.params.id);
+    };
+
     handleFormSubmit = event => {
         event.preventDefault();
 
@@ -118,11 +122,11 @@ class AddItem extends Component {
                     <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
 
-                <Modal toggle={this.toggleitemAddedModal} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
+                <Modal toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
                     <ModalHeader>Item Added!</ModalHeader>
-                    <ModalBody>Your item has been added.</ModalBody>
+                    <ModalBody>Item has been added to your store.</ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggleitemAddedModal}>Close</Button>
+                        <Button color="primary" onClick={this.redirect}>Close</Button>
                     </ModalFooter>
                 </Modal>
             </div>
