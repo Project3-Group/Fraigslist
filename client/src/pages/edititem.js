@@ -70,42 +70,48 @@ class EditItem extends Component {
             <div>
                 <div className="container">
                     <div className='row'>
-                        <div>{this.state.item.itemName}</div>
-                    </div>
+                        <div className="col-md-6">
+                            <div>{this.state.item.itemName}</div>
+                            <div className="row image-row">
+                                {/* add item detail stuff */}
+                                <img
+                                    src={this.state.item.imageLink}
+                                    alt={this.state.item.itemName}
+                                    id={this.state.item.itemName} />
+                            </div>
+                            <div className='row'>
+                                <div>Current Quantity: {this.state.item.quantity}</div>
+                            </div>
+                            <div className='row'>
+                                <div>Current Price: USD$: {this.state.item.price}</div>
+                            </div>
+                            <div className='row'>
+                                <div>Current Description: {this.state.item.itemDescription}</div>
+                            </div>
+                        </div>
 
-                    <div className="row image-row">
-                        {/* add item detail stuff */}
-                        <img
-                            src={this.state.item.imageLink}
-                            alt={this.state.item.itemName}
-                            id={this.state.item.itemName} />
-                    </div>
-
-                    <div className='row'>
-                        <div>Current Quantity: {this.state.item.quantity}</div>
-                        <div>Current Price: USD$: {this.state.item.price}</div>
-                    </div>
-
-                    <div className="row description-row">
-                        Purchase Quantity:
-                    </div>
-                    <div className='row'>
-                        <form>
-                            <input
-                                name="quantity"
-                                type="number"
-                                value={this.state.quantity}
-                                onChange={this.handleInputChange}
-                                placeholder="New Quantity" />
-                            <input
-                                name="price"
-                                type="number"
-                                value={this.state.price}
-                                onChange={this.handleInputChange}
-                                placeholder="New Price" />
-
-                            <button onClick={this.handleFormSubmit}>Submit</button>
-                        </form>
+                        <div className="col-md-6">
+                            <form>
+                                <div>Submit your new information below.</div>
+                                <div className='row'>
+                                    <input
+                                        name="quantity"
+                                        type="number"
+                                        value={this.state.quantity}
+                                        onChange={this.handleInputChange}
+                                        placeholder="New Quantity" />
+                                </div>
+                                <div className='row'>
+                                    <input
+                                        name="price"
+                                        type="number"
+                                        value={this.state.price}
+                                        onChange={this.handleInputChange}
+                                        placeholder="New Price" />
+                                </div>
+                                <button onClick={this.handleFormSubmit}>Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
