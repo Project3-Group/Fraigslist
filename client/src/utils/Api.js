@@ -19,7 +19,7 @@ export default {
     },
     getUserItems: id => {
         // console.log("working???")
-git         return axios.get('/api/store/' + id);
+        return axios.get('/api/store/' + id);
     },
     deleteItem: id => {
         // console.log("deleting item: " + id);
