@@ -13,9 +13,16 @@ export default {
         // console.log('retriving item data');
         return axios.get('/api/items/' + id);
     },
+    getSellerAmountMade: sellerId => {
+        return axios.get('/api/user/' + sellerId);
+    },
     updateItem: (id , data) => {
         // console.log("updating item: " + id);
         return axios.put('/api/items/' + id, data);
+    },
+    updateSellerAmountMade: (sellerId, data) => {
+        console.log('new data: ' + data);
+        return axios.put('/api/user/' + sellerId, data);
     },
     getUserItems: id => {
         // console.log("working???")
