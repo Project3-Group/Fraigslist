@@ -56,14 +56,14 @@ class EditItem extends Component {
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
-            .catch(err => console.log(err));
+            // .catch(err => console.log(err));
     };
 
     handleDeleteRequest = id => {
         // console.log(this.props.match.params.id)
         API.deleteItem(this.props.match.params.id)
           .then(res => this.toggleDeleteModal())        
-          .catch(err => console.log(err));
+        //   .catch(err => console.log(err));
       };
 
     handleInputChange = event => {
@@ -102,7 +102,7 @@ class EditItem extends Component {
                 this.getItemDetails();
                 // window.location.assign('/');
             }).catch(err => {
-                console.log(err)
+                // console.log(err)
             });
         };
     };

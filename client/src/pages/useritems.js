@@ -31,7 +31,8 @@ class UserItems extends Component {
                 this.setState({
                     items: data
                 })
-            }).catch(err => console.log(err))
+            })
+            // .catch(err => console.log(err))
         });
     }
 

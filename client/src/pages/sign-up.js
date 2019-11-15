@@ -6,9 +6,6 @@ class Signup extends Component {
 	state = {
 		inputFields: {},
 		errors: {},
-		// username: '',
-		// password: '',
-		// email: '',
 		isChecked: false,
 	}
 
@@ -38,10 +35,10 @@ class Signup extends Component {
 		let inputFields = this.state.inputFields;
 		let errors = {};
 		let formValid = false;
-		console.log("validating");
+		// console.log("validating");
 
 		if (!inputFields["username"]) {
-			console.log("check user")
+			// console.log("check user")
 			formValid = false;
 			errors["username"] = "*Username is required.";
 			this.setState({
@@ -49,7 +46,7 @@ class Signup extends Component {
 			})
 		}
 		if (!inputFields["email"]) {
-			console.log("check email")
+			// console.log("check email")
 			formValid = false;
 			errors["email"] = "*Email is required.";
 			this.setState({
@@ -57,7 +54,7 @@ class Signup extends Component {
 			})
 		}
 		if (!inputFields["password"]) {
-			console.log("check pass")
+			// console.log("check pass")
 			formValid = false;
 			errors["password"] = "*Password is required.";
 			this.setState({
@@ -74,9 +71,9 @@ class Signup extends Component {
 	submitUser = () => {
 		// console.log('sign-up handleSubmit, username: ')
 		// console.log(this.state.username)
-			console.log("creating account")
+			// console.log("creating account")
 			//request to server to add a new username/password
-			console.log(this.state.inputFields.username)
+			// console.log(this.state.inputFields.username)
 			axios.post('/api/user', {
 				username: this.state.inputFields.username,
 				password: this.state.inputFields.password,
@@ -103,32 +100,12 @@ class Signup extends Component {
 							window.location.assign('/')
 						}
 					}).catch(error => {
-						console.log('login error: ')
-						console.log(error);
+						// console.log('login error: ')
+						// console.log(error);
 					})
 				}
 			})
 	}
-
-
-	// else {
-	// 				// console.log(response.data.errors)
-	// 				if (response.data.errors.email) {
-	// 					console.log("Email is required")
-	// 					this.setState({
-	// 						email: '',
-	// 						// redirectTo: '/signup'
-	// 					})
-	// 				}
-	// 				if (response.data.errors.password) {
-	// 					console.log("Password is required")
-	// 				}
-	// 			}
-	// 		}).catch(error => {
-	// 			console.log('signup error: ')
-	// 			console.log(error)
-	// 		})
-	// }
 
 	render() {
 		return (
@@ -166,9 +143,7 @@ class Signup extends Component {
 								onChange={this.handleChange}
 							/>
 							<div className="errorMessage">{this.state.errors.email}</div>
-
 						</div>
-
 					</div>
 
 					<div className="form-group">
@@ -184,7 +159,6 @@ class Signup extends Component {
 								onChange={this.handleChange}
 							/>
 							<div className="errorMessage">{this.state.errors.password}</div>
-
 						</div>
 					</div>
 
