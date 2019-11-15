@@ -8,6 +8,7 @@ const session = require('express-session');
 const dbConnection = require('./connection');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
+const db = require('./models')
 const app = express();
 const PORT = process.env.PORT || 8080;
 const nodemailer = require("nodemailer");
@@ -42,9 +43,11 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
-app.post("/mail", (req, res) => {
-    console.log("Email route hit");
-    // console.log(req.body.item);
+app.post("/mail/:id", (req, res) => {
+    db.User.findOne({_id:req.params.id}, (err, res)=>{
+        console.log(res.email)
+        console.log("Email route hit");
+    console.log(req.params);
     var transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -60,7 +63,7 @@ app.post("/mail", (req, res) => {
 
         var mailOptions = {
             from: '"24hr Bidder" <24hrbidder@gmail.com>',
-            to: "corona.orlando@gmail.com",
+            to: res.email,
             subject: "Nodemailer test",
             text: "It's working"
         }
@@ -72,6 +75,8 @@ app.post("/mail", (req, res) => {
         
             }
         })
+    })
+    
         
 })
 
