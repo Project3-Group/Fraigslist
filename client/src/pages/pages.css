@@ -3,3 +3,8 @@
     max-height: 200px;
     max-width: 200px;
 }
+
+.errorMessage {
+    color: red;
+    margin-bottom: 5px;
+}
