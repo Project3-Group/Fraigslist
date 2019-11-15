@@ -37,5 +37,14 @@ module.exports = {
             // .populate('items')
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
-    }
+    },
+    remove: function(req, res) {
+        console.log("where is this")
+        console.log(req.params)
+        db.Items
+          .findById({ _id: req.params.id })
+          .then(dbDelete => dbDelete.remove())
+          .then(dbDelete => res.json(dbDelete))
+          .catch(err => res.status(422).json(err));
+      }
 };

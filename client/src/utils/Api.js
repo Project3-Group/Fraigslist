@@ -18,8 +18,12 @@ export default {
         return axios.put('/api/items/' + id, data);
     },
     getUserItems: id => {
-        console.log("working???")
+        // console.log("working???")
         return axios.get('/api/store/' + id);
-    }
+    },
+    deleteItem: id => {
+        // console.log("deleting item: " + id);
+        return axios.delete('/api/items/' + id);
+    },
 
 };

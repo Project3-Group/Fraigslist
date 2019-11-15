@@ -12,7 +12,7 @@ class Signup extends Component {
 	}
 
 	handleChange = event => {
-		console.log(event.target)
+		// console.log(event.target)
 		this.setState({
 			[event.target.name]: event.target.value
 		})
@@ -24,15 +24,15 @@ class Signup extends Component {
 				isChecked: !isChecked
 			}
 		}, function () {
-			console.log(this.state.isChecked, "updated value");
+			// console.log(this.state.isChecked, "updated value");
 		});
-		console.log(event.target.checked)
+		// console.log(event.target.checked)
 	}
 
 
 	handleSubmit = event => {
-		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
+		// console.log('sign-up handleSubmit, username: ')
+		// console.log(this.state.username)
 		event.preventDefault()
 
 		//request to server to add a new username/password
@@ -43,12 +43,12 @@ class Signup extends Component {
 
 		})
 			.then(response => {
-				console.log(response)
+				// console.log(response)
 				// if(response.data.errors){
 				// 	console.log(response.data.errors);
 				// }
 				if (!response.data.errors) {
-					console.log('successful signup')
+					// console.log('successful signup')
 					axios
 						.post('/api/user/login', {
 							username: this.state.username,
@@ -56,8 +56,8 @@ class Signup extends Component {
 
 						})
 						.then(response => {
-							console.log('login response: ')
-							console.log(response)
+							// console.log('login response: ')
+							// console.log(response)
 							if (response.status === 200) {
 								// update App.js state
 								this.props.updateUser({
@@ -73,7 +73,7 @@ class Signup extends Component {
 
 						})
 				} else {
-					console.log(response.data.errors)
+					// console.log(response.data.errors)
 					if (response.data.errors.email) {
 						console.log("Email is required")
 						this.setState({
@@ -100,10 +100,8 @@ class Signup extends Component {
 			}).catch(error => {
 				console.log('signup error: ')
 				console.log(error)
-
 			})
 	}
-
 
 	render() {
 		return (
