@@ -12,7 +12,7 @@ class Signup extends Component {
 	}
 
 	handleChange = event => {
-		// console.log(event.target)
+		console.log(event.target)
 		this.setState({
 			[event.target.name]: event.target.value
 		})
@@ -24,9 +24,9 @@ class Signup extends Component {
 				isChecked: !isChecked
 			}
 		}, function () {
-			// console.log(this.state.isChecked, "updated value");
+			console.log(this.state.isChecked, "updated value");
 		});
-		// console.log(event.target.checked)
+		console.log(event.target.checked)
 	}
 
 
