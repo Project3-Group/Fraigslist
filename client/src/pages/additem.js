@@ -43,6 +43,18 @@ class AddItem extends Component {
         })
     }
 
+    handleImageChange = event => {
+        console.log(event.target.files[0]);
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            this.setState({
+                imageLink: e.target.result
+            })
+        }
+        reader.readAsDataURL(file);
+    }
+    
     redirect = () => {
         window.location.assign('/useritems/'+ this.props.match.params.id);
     };
@@ -61,22 +73,24 @@ class AddItem extends Component {
             // inCart: this.state.inCart,
 
         }
+
         // console.log(newItem);
 
         // axios
-        API.addItem(newItem);
+        API.addItem(newItem).then(() => {
+            this.setState(
+                {
+                    itemName: "",
+                    imageLink: "",
+                    quantity: "",
+                    price: "",
+                    itemDescription: "",
+                    company: "",
+                }
+            )
+            this.toggleitemAddedModal();
+        }).catch(e => console.log(e));
 
-        this.setState(
-            {
-                itemName: "",
-                imageLink: "",
-                quantity: "",
-                price: "",
-                itemDescription: "",
-                company: "",
-            }
-        )
-        this.toggleitemAddedModal();
     };
 
     render() {
@@ -88,37 +102,37 @@ class AddItem extends Component {
                         type="text"
                         value={this.state.itemName}
                         onChange={this.handleInputChange}
-                        placeholder="itemName" />
+                        placeholder="itemName" /><br></br>
                     <input
                         name="imageLink"
-                        type="text"
-                        value={this.state.imageLink}
-                        onChange={this.handleInputChange}
-                        placeholder="imageLink" />
+                        type="file"
+                        accept='image/*'
+                        onChange={this.handleImageChange}
+                        placeholder="imageLink" /><br></br>
                     <input
                         name="quantity"
                         type="number"
                         value={this.state.quantity}
                         onChange={this.handleInputChange}
-                        placeholder="quantity" />
+                        placeholder="quantity" /><br></br>
                     <input
                         name="price"
                         value={this.state.price}
                         onChange={this.handleInputChange}
                         type="number"
-                        placeholder="price" />
+                        placeholder="price" /><br></br>
                     <input
                         name="company"
                         value={this.state.company}
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="company" />
+                        placeholder="company" /><br></br>
                     <input
                         name="itemDescription"
                         type="text"
                         value={this.state.itemDescription}
                         onChange={this.handleInputChange}
-                        placeholder="itemDescription" />
+                        placeholder="itemDescription" /><br></br>
                     <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
 
