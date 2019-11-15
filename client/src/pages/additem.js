@@ -43,8 +43,16 @@ class AddItem extends Component {
         })
     }
 
-    uploadImage = () => {
-
+    handleImageChange = event => {
+        console.log(event.target.files[0]);
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            this.setState({
+                imageLink: e.target.result
+            })
+        }
+        reader.readAsDataURL(file);
     }
 
     handleFormSubmit = event => {
@@ -61,22 +69,24 @@ class AddItem extends Component {
             // inCart: this.state.inCart,
 
         }
+        console.log('NEWITEM');
         console.log(newItem);
 
         // axios
-        API.addItem(newItem);
+        API.addItem(newItem).then(() => {
+            this.setState(
+                {
+                    itemName: "",
+                    imageLink: "",
+                    quantity: "",
+                    price: "",
+                    itemDescription: "",
+                    company: "",
+                }
+            )
+            this.toggleitemAddedModal();
+        }).catch(e => console.log(e));
 
-        this.setState(
-            {
-                itemName: "",
-                imageLink: "",
-                quantity: "",
-                price: "",
-                itemDescription: "",
-                company: "",
-            }
-        )
-        this.toggleitemAddedModal();
     };
 
     render() {
@@ -91,10 +101,9 @@ class AddItem extends Component {
                         placeholder="itemName" /><br></br>
                     <input
                         name="imageLink"
-                        type="text"
-                        className='new-image'
-                        value={this.state.imageLink}
-                        onChange={this.uploadImage}
+                        type="file"
+                        accept='image/*'
+                        onChange={this.handleImageChange}
                         placeholder="imageLink" /><br></br>
                     <input
                         name="quantity"
