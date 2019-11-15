@@ -14,7 +14,8 @@ class SingleItem extends Component {
         id: "",
         lowStockModal: false,
         noUserModal: false,
-        purchasedModal: false
+        purchasedModal: false,
+        email: ""
     };
 
     componentDidMount() {
@@ -30,7 +31,8 @@ class SingleItem extends Component {
                 return;
             } else {
                 this.setState({
-                    id: response.data.user._id
+                    id: response.data.user._id,
+                    email: response.data.user.email
                 });
             };
         });
@@ -76,6 +78,8 @@ class SingleItem extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log("thing of interest")
+        console.log(this.state)
         const numPurchased = {
             quantity: this.state.quantity,
         }
@@ -97,13 +101,15 @@ class SingleItem extends Component {
                 alert("Congrats")
                 //build body object to include in call
                 let body = {
-                    company: this.state.company,
-                    imageLink: this.state.imageLink,
-                    itemDescription: this.state.itemDescription,
-                    itemName: this.state.itemName,
-                    price: this.state.price
+                    email: this.state.email,
+                    // company: this.state.company,
+                    // imageLink: this.state.imageLink,
+                    // itemDescription: this.state.itemDescription,
+                    // itemName: this.state.itemName,
+                    // price: this.state.price
                 }
-                axios.post("/mail", body)
+
+                axios.post("/mail/" + this.state.id, body)
                 // .then(response => console.log(response))
             }
 
