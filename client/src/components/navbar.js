@@ -1,3 +1,4 @@
+//New Navbar
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
@@ -31,7 +32,7 @@ class Navbar extends Component {
         // console.log(this.props);
 
         return (
-            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">              
+            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
@@ -76,10 +77,8 @@ class Navbar extends Component {
                         </Link>
                     </div>
                 </header>
-                </NavWrapper>
-
+            </NavWrapper>
         );
-
     }
 }
 
