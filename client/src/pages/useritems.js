@@ -46,12 +46,12 @@ class UserItems extends Component {
                 <div className="container">
                     <div className="row">
                         {this.state.items.map(cards => (
-                            <Card>
-                                <CardBody id={cards._id}>
-                                    <CardImg className="img" src={cards.imageLink} />
+                            <Card id={cards._id}>
+                                <CardBody>
                                     <CardTitle>
                                         {cards.itemName}
                                     </CardTitle>
+                                    <CardImg className="img" src={cards.imageLink} />
                                     <CardText>
                                         Price: ${cards.price}<br></br>
                                         Quantity: {cards.quantity}<br></br>
@@ -62,29 +62,7 @@ class UserItems extends Component {
                                     </form>
                                 </CardBody>
                             </Card>
-
                         ))}
-
-                        {/* {this.state.items.map(edit => (
-                            console.log(edit)
-                            <form action={'/edititem/' + edit.id} method='get'>
-                                <button type='submit'>Edit Item</button>
-                            </form>
-                        ))} */}
-
-                        {/* {this.state.items.map(cards => (
-                            <Card
-                                id={cards._id}
-                                key={cards._id}
-                                itemName={cards.itemName}
-                                price={cards.price}
-                                quantity={cards.quantity}
-                                imageLink={cards.imageLink}
-                                description={cards.itemDescription}
-                            />
-                        ))} */}
-
-
                     </div>
                 </div>
             </div>

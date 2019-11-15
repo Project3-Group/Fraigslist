@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from '../utils/Api';
 import axios from 'axios'
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Row, Container, Col, Jumbotron } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class AddItem extends Component {
@@ -97,53 +98,91 @@ class AddItem extends Component {
     render() {
         return (
             <div>
-                <form>
-                    <input
-                        name="itemName"
-                        type="text"
-                        value={this.state.itemName}
-                        onChange={this.handleInputChange}
-                        placeholder="itemName" /><br></br>
-                    <input
-                        name="imageLink"
-                        type="file"
-                        accept='image/*'
-                        onChange={this.handleImageChange}
-                        placeholder="imageLink" /><br></br>
-                    <input
-                        name="quantity"
-                        type="number"
-                        value={this.state.quantity}
-                        onChange={this.handleInputChange}
-                        placeholder="quantity" /><br></br>
-                    <input
-                        name="price"
-                        value={this.state.price}
-                        onChange={this.handleInputChange}
-                        type="number"
-                        placeholder="price" /><br></br>
-                    <input
-                        name="company"
-                        value={this.state.company}
-                        onChange={this.handleInputChange}
-                        type="text"
-                        placeholder="company" /><br></br>
-                    <input
-                        name="itemDescription"
-                        type="text"
-                        value={this.state.itemDescription}
-                        onChange={this.handleInputChange}
-                        placeholder="itemDescription" /><br></br>
-                    <button onClick={this.handleFormSubmit}>Submit</button>
-                </form>
+                <Container>
+                    <Row>
+                        <Col sm="12" md={{ size: 6, offset: 3 }}>
+                        <Jumbotron>
+                            
+                        </Jumbotron>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm="12" md={{ size: 6, offset: 3 }}>
+                            <Card body outline color="secondary" className="addCard">
+                                <CardBody>
+                                    <CardTitle>
+                                        Create a listing.
+                            </CardTitle>
+                                    <CardText>
+                                        <form>
+                                            <input
+                                                name="itemName"
+                                                type="text"
+                                                value={this.state.itemName}
+                                                onChange={this.handleInputChange}
+                                                placeholder="itemName" /><br></br>
 
-                <Modal toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
-                    <ModalHeader>Item Added!</ModalHeader>
-                    <ModalBody>Item has been added to your store.</ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.redirect}>Close</Button>
-                    </ModalFooter>
-                </Modal>
+                                            <input
+                                                name="imageLink"
+                                                type="file"
+                                                accept='image/*'
+                                                onChange={this.handleImageChange}
+                                                placeholder="imageLink" /><br></br>
+
+                                            <input
+                                                name="quantity"
+                                                type="number"
+                                                value={this.state.quantity}
+                                                onChange={this.handleInputChange}
+                                                placeholder="quantity" /><br></br>
+
+                                            <input
+                                                name="price"
+                                                value={this.state.price}
+                                                onChange={this.handleInputChange}
+                                                type="number"
+                                                placeholder="price" /><br></br>
+
+                                            <input
+                                                name="company"
+                                                value={this.state.company}
+                                                onChange={this.handleInputChange}
+                                                type="text"
+                                                placeholder="company" /><br></br>
+
+                                            <div class="form-group">
+                                                <label for="itemDescription">Edit Description</label>
+                                                <textarea
+                                                    name="itemDescription"
+                                                    class="form-control"
+                                                    id="itemDescription"
+                                                    rows="3"
+                                                    type="text"
+                                                    value={this.state.itemDescription}
+                                                    placeholder="Enter item description. Default: Current"
+                                                    value={this.state.itemDescription}
+                                                    onChange={this.handleInputChange}
+                                                ></textarea>
+                                            </div>
+
+                                            <button onClick={this.handleFormSubmit}>Submit</button>
+                                        </form>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+                <div>
+                    <Modal toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
+                        <ModalHeader>Item Added!</ModalHeader>
+                        <ModalBody>Item has been added to your store.</ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.redirect}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+
             </div>
         );
     }

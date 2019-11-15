@@ -11,19 +11,19 @@ router.post('/', (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
 
-    console.log(username, password, email)
+    // console.log(username, password, email)
     // ADD VALIDATION
-    console.log(res.error)
-    console.log(email);
+    // console.log(res.error)
+    // console.log(email);
     if(email == undefined){
         res.redirect("/signup");
     }else{
     User.findOne({ username: username }, (err, user) => {
         if (err) {
-            console.log('User.js post error: ', err)
+            // console.log('User.js post error: ', err)
         } else if (user) {
             res.json({
-                error: `Sorry, already a user with the username: ${username}`
+                // error: `Sorry, already a user with the username: ${username}`
             })
         }
         else {
@@ -44,13 +44,13 @@ router.post('/', (req, res) => {
 router.post(
     '/login',
     function (req, res, next) {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
-        next()
+        // console.log('routes/user.js, login, req.body: ');
+        // console.log(req.body)
+        // next()
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
+        // console.log('logged in', req.user);
         var userInfo = {
             username: req.user.username
         };
@@ -59,8 +59,8 @@ router.post(
 )
 
 router.get('/', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user) //gives user as oobject + username _id: id, username: user
+    // console.log('===== user!!======')
+    // console.log(req.user) //gives user as oobject + username _id: id, username: user
     if (req.user) {
         res.json({ user: req.user })
     } else {
