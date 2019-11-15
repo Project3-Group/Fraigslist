@@ -20,9 +20,10 @@ const Card = props => (
       {/* we should find a better way to do this */}
       {/* <button type='submit'>Item Page</button> */}
 
-      <form action={'/edititem/' + props.id} method='get'>
+      {/* <form action={'/edititem/' + props.id} method='get'>
         <button type='submit'>Edit Item</button>
-      </form>
+      </form> */}
+
       <div>Quantity: {props.quantity}</div>
       <div>Price: US ${props.price}</div>
       <div>Item Description: {props.description}</div>

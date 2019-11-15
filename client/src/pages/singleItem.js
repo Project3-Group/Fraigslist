@@ -107,7 +107,7 @@ class SingleItem extends Component {
                     })
                     // window.location.assign('/');
                 }).catch(err => {
-                    console.log(err)
+                    // console.log(err)
                 })
 
                 alert("Congrats")
@@ -119,8 +119,8 @@ class SingleItem extends Component {
                     itemName: this.state.itemName,
                     price: this.state.price
                 }
-                axios.post("/mail", body).then(response => console.log(response)
-                )
+                axios.post("/mail", body)
+                // .then(response => console.log(response))
             }
 
         }

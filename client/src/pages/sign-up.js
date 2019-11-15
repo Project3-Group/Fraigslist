@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './pages.css';
 
 class Signup extends Component {
 	state = {
-		username: '',
-		password: '',
-		email: '',
+		inputFields: {},
+		errors: {},
 		isChecked: false,
-		className: "test"
-		// confirmPassword: '', // do this later
 	}
 
 	handleChange = event => {
 		// console.log(event.target)
+		let inputFields = this.state.inputFields;
+		inputFields[event.target.name] = event.target.value;
 		this.setState({
-			[event.target.name]: event.target.value
+			inputFields
 		})
 	}
 
@@ -24,88 +24,92 @@ class Signup extends Component {
 				isChecked: !isChecked
 			}
 		}, function () {
-			// console.log(this.state.isChecked, "updated value");
+			console.log(this.state.isChecked, "updated value");
 		});
-		// console.log(event.target.checked)
+		console.log(event.target.checked)
 	}
 
-
-	handleSubmit = event => {
-		// console.log('sign-up handleSubmit, username: ')
-		// console.log(this.state.username)
+	handleValidateForm = event => {
 		event.preventDefault()
 
-		//request to server to add a new username/password
-		axios.post('/api/user', {
-			username: this.state.username,
-			password: this.state.password,
-			email: this.state.email
+		let inputFields = this.state.inputFields;
+		let errors = {};
+		let formValid = false;
+		// console.log("validating");
 
-		})
-			.then(response => {
-				// console.log(response)
-				// if(response.data.errors){
-				// 	console.log(response.data.errors);
-				// }
+		if (!inputFields["username"]) {
+			// console.log("check user")
+			formValid = false;
+			errors["username"] = "*Username is required.";
+			this.setState({
+				errors
+			})
+		}
+		if (!inputFields["email"]) {
+			// console.log("check email")
+			formValid = false;
+			errors["email"] = "*Email is required.";
+			this.setState({
+				errors
+			})
+		}
+		if (!inputFields["password"]) {
+			// console.log("check pass")
+			formValid = false;
+			errors["password"] = "*Password is required.";
+			this.setState({
+				errors
+			})
+		} else {
+			this.setState({
+				errors
+			});
+			this.submitUser();
+		}
+	}
+
+	submitUser = () => {
+		// console.log('sign-up handleSubmit, username: ')
+		// console.log(this.state.username)
+			// console.log("creating account")
+			//request to server to add a new username/password
+			// console.log(this.state.inputFields.username)
+			axios.post('/api/user', {
+				username: this.state.inputFields.username,
+				password: this.state.inputFields.password,
+				email: this.state.inputFields.email
+			}).then(response => {
+				if (response.data.errors) {
+					// console.log(response.data.errors);
+				}
 				if (!response.data.errors) {
 					// console.log('successful signup')
-					axios
-						.post('/api/user/login', {
-							username: this.state.username,
-							password: this.state.password,
-
-						})
-						.then(response => {
-							// console.log('login response: ')
-							// console.log(response)
-							if (response.status === 200) {
-								// update App.js state
-								this.props.updateUser({
-									loggedIn: true,
-									username: response.data.username
-								})
-								// update the state to redirect to home
-								window.location.assign('/')
-							}
-						}).catch(error => {
-							console.log('login error: ')
-							console.log(error);
-
-						})
-				} else {
-					// console.log(response.data.errors)
-					if (response.data.errors.email) {
-						console.log("Email is required")
-						this.setState({
-							email: '',
-							// redirectTo: '/signup'
-						})
-					}
-					if (response.data.errors.password) {
-						console.log("Password is required")
-					}
-					// if (this.state.isChecked == false) {
-					// 	console.log("Check the box")
-					// }
-					
-					// if (response.data.errors.username) {
-					// 	console.log("Username is required")
-					// 	this.setState({
-					// 		className: "asdf"
-					// 	})
-					// 	console.log(this.state)
-					// }
-
+					axios.post('/api/user/login', {
+						username: this.state.inputFields.username,
+						password: this.state.inputFields.password,
+					}).then(response => {
+						// console.log('login response: ')
+						// console.log(response)
+						if (response.status === 200) {
+							// update App.js state
+							this.props.updateUser({
+								loggedIn: true,
+								username: response.data.username
+							})
+							// update the state to redirect to home
+							window.location.assign('/')
+						}
+					}).catch(error => {
+						// console.log('login error: ')
+						// console.log(error);
+					})
 				}
-			}).catch(error => {
-				console.log('signup error: ')
-				console.log(error)
 			})
 	}
 
 	render() {
 		return (
-			<div className="SignupForm">
+			<div className="SignupForm" >
 
 				<form className="form-horizontal">
 
@@ -119,9 +123,10 @@ class Signup extends Component {
 								id="username"
 								name="username"
 								placeholder="Username"
-								value={this.state.username}
+								value={this.state.inputFields.username}
 								onChange={this.handleChange}
 							/>
+							<div className="errorMessage">{this.state.errors.username}</div>
 						</div>
 					</div>
 
@@ -134,9 +139,10 @@ class Signup extends Component {
 								placeholder="email (required)"
 								type="text"
 								name="email"
-								value={this.state.email}
+								value={this.state.inputFields.email}
 								onChange={this.handleChange}
 							/>
+							<div className="errorMessage">{this.state.errors.email}</div>
 						</div>
 					</div>
 
@@ -149,9 +155,10 @@ class Signup extends Component {
 								placeholder="password"
 								type="password"
 								name="password"
-								value={this.state.password}
+								value={this.state.inputFields.password}
 								onChange={this.handleChange}
 							/>
+							<div className="errorMessage">{this.state.errors.password}</div>
 						</div>
 					</div>
 
@@ -173,7 +180,7 @@ class Signup extends Component {
 						<div className="col-7"></div>
 						<button
 							className="btn btn-primary col-1 col-mr-auto"
-							onClick={this.handleSubmit}
+							onClick={this.handleValidateForm}
 							type="submit"
 						>Sign up</button>
 					</div>
