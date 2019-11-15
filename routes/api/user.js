@@ -13,60 +13,73 @@ router.post('/', (req, res) => {
 
     console.log(username, password, email)
     // ADD VALIDATION
-    console.log(res.error)
-    console.log(email);
-    if(email == undefined){
+
+    if (email == undefined) {
         res.redirect("/signup");
-    }else{
-    User.findOne({ username: username }, (err, user) => {
-        if (err) {
-            console.log('User.js post error: ', err)
-        } else if (user) {
-            res.json({
-                error: `Sorry, already a user with the username: ${username}`
-            })
-        }
-        else {
-            const newUser = new User({
-                username: username,
-                password: password,
-                email: email
-            })
-            newUser.save((err, savedUser) => {
-                if (err) return res.json(err)
-                res.json(savedUser)
-            })
-        }
-    })
-}
+    } else {
+        User.findOne({ username: username }, (err, user) => {
+            if (err) {
+                console.log('User.js post error: ', err)
+            } else if (user) {
+                res.json({
+                    error: `Sorry, already a user with the username: ${username}`
+                })
+            }
+            else {
+                const newUser = new User({
+                    username: username,
+                    password: password,
+                    email: email,
+                    money_made: 0
+                })
+                newUser.save((err, savedUser) => {
+                    if (err) return res.json(err)
+                    res.json(savedUser)
+                })
+            }
+        })
+    }
 })
 
 router.post(
     '/login',
     function (req, res, next) {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
         next()
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
         var userInfo = {
-            username: req.user.username
+            username: req.user.username,
+            money_made: req.user.money_made
         };
         res.send(userInfo);
     }
 )
 
 router.get('/', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user) //gives user as oobject + username _id: id, username: user
-    if (req.user) {
-        res.json({ user: req.user })
-    } else {
-        res.json({ user: null })
-    }
-})
+    username = req.user.username;
+    User.findOne({ username: username }, (err, user) => {
+        if (req.user) {
+            res.json({ user: user })
+        } else {
+            res.json({ user: null })
+        }
+    });
+});
+
+router.get('/:sellerId', (req, res) => {
+    User.findOne({ _id: req.params.sellerId }, (err, user) => {
+        res.json({ money_made: user.money_made });
+    });
+});
+
+router.put('/:sellerId', (req, res) => {
+    User.findOneAndUpdate({ _id: req.params.sellerId }, {money_made: req.body.money_made}, { new: true })
+    .then(dbUpdate => {
+        res.json(dbUpdate)
+    })
+    .catch(err => res.status(400).json(err));
+});
 
 router.post('/logout', (req, res) => {
     if (req.user) {

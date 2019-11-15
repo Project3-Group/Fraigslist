@@ -12,6 +12,8 @@ class SingleItem extends Component {
         item: [],
         quantity: "",
         id: "",
+        sellerId: "",
+        sellerAmountMade: null,
         lowStockModal: false,
         noUserModal: false,
         purchasedModal: false,
@@ -22,7 +24,6 @@ class SingleItem extends Component {
         this.getItemDetails();
         this.getUser();
     };
-
 
     getUser = () => {
         axios.get('/api/user/').then(response => {
@@ -63,8 +64,15 @@ class SingleItem extends Component {
 
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
-            .then(res => this.setState({ item: res.data }))
-            // .catch(err => console.log(err));
+            .then(res => {
+                this.setState({
+                    item: res.data,
+                    sellerId: res.data.id
+                });
+                API.getSellerAmountMade(res.data.id).then(res => {
+                    this.setState({ sellerAmountMade: res.data.money_made });
+                });
+            }).catch(err => console.log(err));
     };
 
     handleInputChange = event => {
@@ -83,6 +91,8 @@ class SingleItem extends Component {
         const numPurchased = {
             quantity: this.state.quantity,
         }
+        let spent = this.state.quantity * this.state.item.price;
+        let newSellerAmountMade = spent + this.state.sellerAmountMade;
         if (!this.state.id) {
             this.toggleNoUserModal();
         } else {
@@ -93,11 +103,17 @@ class SingleItem extends Component {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
-                    this.getItemDetails();
+                    API.updateSellerAmountMade( this.state.sellerId, {
+                        money_made: newSellerAmountMade
+                    }).then(update => {
+                        console.log('second chance amount made ' + newSellerAmountMade);
+                        this.getItemDetails();
+                    })
                     // window.location.assign('/');
                 }).catch(err => {
                     // console.log(err)
                 })
+
                 alert("Congrats")
                 //build body object to include in call
                 let body = {
@@ -120,6 +136,7 @@ class SingleItem extends Component {
     render() {
         return (
             <div>
+                {console.log(this.state)}
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
