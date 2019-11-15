@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Card from '../components/Card'
+// import Card from '../components/Card'
+import './pages.css';
+
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+
 import { Link } from 'react-router-dom';
 // import Modal from '../components/Modal'
 
@@ -26,8 +30,8 @@ class UserItems extends Component {
             let id = response.data.user._id
             // console.log(id)
             API.getUserItems(id).then(res => {
-                // console.log(res)
-                let data=res.data
+                console.log(res.data)
+                let data = res.data
                 this.setState({
                     items: data
                 })
@@ -42,6 +46,33 @@ class UserItems extends Component {
                 <div className="container">
                     <div className="row">
                         {this.state.items.map(cards => (
+                            <Card>
+                                <CardBody id={cards._id}>
+                                    <CardImg className="img" src={cards.imageLink} />
+                                    <CardTitle>
+                                        {cards.itemName}
+                                    </CardTitle>
+                                    <CardText>
+                                        Price: ${cards.price}<br></br>
+                                        Quantity: {cards.quantity}<br></br>
+                                        Item Description: {cards.itemDescription}
+                                    </CardText>
+                                    <form action={'/edititem/' + cards._id} method='get'>
+                                        <button type='submit'>Edit Item</button>
+                                    </form>
+                                </CardBody>
+                            </Card>
+
+                        ))}
+
+                        {/* {this.state.items.map(edit => (
+                            console.log(edit)
+                            <form action={'/edititem/' + edit.id} method='get'>
+                                <button type='submit'>Edit Item</button>
+                            </form>
+                        ))} */}
+
+                        {/* {this.state.items.map(cards => (
                             <Card
                                 id={cards._id}
                                 key={cards._id}
@@ -51,18 +82,9 @@ class UserItems extends Component {
                                 imageLink={cards.imageLink}
                                 description={cards.itemDescription}
                             />
-                        ))}
-                         
-                        {/* {this.state.items.map(modals => (
-                            <Modal
-                                itemName={modals.itemName}
-                                price={modals.price}
-                                quantity={modals.quantity}
-                                imageLink={modals.imageLink}
-                                description={modals.itemDescription}
-                            >
-                            </Modal>
                         ))} */}
+
+
                     </div>
                 </div>
             </div>

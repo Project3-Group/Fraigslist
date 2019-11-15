@@ -6,9 +6,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios'
 
 class EditItem extends Component {
-    static defaultProps = {
-
-    }
     state = {
         item: [],
         quantity: "", // this.state.item.quantity

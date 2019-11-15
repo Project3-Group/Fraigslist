@@ -8,3 +8,9 @@
     color: red;
     margin-bottom: 5px;
 }
+
+div div div div div div div img.img.card-img {
+    margin: 5px;
+    max-height: 150px;
+    max-width: 150px;
+}
