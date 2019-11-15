@@ -62,7 +62,7 @@ class SingleItem extends Component {
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => this.setState({ item: res.data }))
-            .catch(err => console.log(err));
+            // .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
@@ -92,7 +92,7 @@ class SingleItem extends Component {
                     this.getItemDetails();
                     // window.location.assign('/');
                 }).catch(err => {
-                    console.log(err)
+                    // console.log(err)
                 })
                 alert("Congrats")
                 //build body object to include in call
@@ -103,8 +103,8 @@ class SingleItem extends Component {
                     itemName: this.state.itemName,
                     price: this.state.price
                 }
-                axios.post("/mail", body).then(response => console.log(response)
-                )
+                axios.post("/mail", body)
+                // .then(response => console.log(response))
             }
 
         }

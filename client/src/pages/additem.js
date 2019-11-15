@@ -44,7 +44,7 @@ class AddItem extends Component {
     }
 
     handleImageChange = event => {
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = e => {
@@ -54,9 +54,9 @@ class AddItem extends Component {
         }
         reader.readAsDataURL(file);
     }
-    
+
     redirect = () => {
-        window.location.assign('/useritems/'+ this.props.match.params.id);
+        window.location.assign('/useritems/' + this.props.match.params.id);
     };
 
     handleFormSubmit = event => {
@@ -89,7 +89,8 @@ class AddItem extends Component {
                 }
             )
             this.toggleitemAddedModal();
-        }).catch(e => console.log(e));
+        })
+        // .catch(err =>console.log(err));
 
     };
 

@@ -22,7 +22,7 @@ class Navbar extends Component {
                 })
             }
         }).catch(error => {
-            console.log('Logout error')
+            // console.log('Logout error')
         })
     }
 

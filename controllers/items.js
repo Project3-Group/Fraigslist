@@ -1,3 +1,4 @@
+const imgur = require('imgur');
 const db = require("../models");
 console.log("DB logs");
 console.log(db);
