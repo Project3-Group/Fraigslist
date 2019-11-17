@@ -1,8 +1,10 @@
+//New Navbar
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 //import '../App.css';
 import axios from 'axios'
+
 import styled from 'styled-components';
 
 
@@ -31,7 +33,7 @@ class Navbar extends Component {
         // console.log(this.props);
 
         return (
-            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">              
+            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
@@ -68,18 +70,18 @@ class Navbar extends Component {
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title">Super Dope Free Market</h1>
 
-                        <Link to='/cart' className="ml-auto">
-                            <button>
-                                <i className="fas fa-cart-plus" />
-                                my cart
-                            </button>
+                        <Link to="/cart" className="ml-auto">
+                            <button className="header-cart">
+                                <span className="mr-2">
+                                    <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>
+                                </span>
+                                My Cart
+          </button>
                         </Link>
                     </div>
                 </header>
-                </NavWrapper>
-
+            </NavWrapper>
         );
-
     }
 }
 
@@ -90,6 +92,30 @@ const NavWrapper = styled.nav`
     font-size:1.3rem;
     text-transform:capitalize;
   }
+  background-image: url("https://freefeast.info/wp-content/uploads//2013/07/navigationbar@2x1.png");
+  .nav-link {
+    color: var(--mainWhite) !important;
+    font-size:1.3rem;
+    text-transform:capitalize;
+  }
+  .cartlog {
+    width: 60px !important;
+    height: 30px !important;
+  }
+  .nav-link{
+    color: var(--mainDark) !important;
+
+  }
+  .header-cart{
+    background-color: var(--lightBlue);
+
+  }
+  @media (max-width: 576px) {
+    .navbar-nav {
+      flex-direction: row !important;
+  
 `;
+
+
 
 export default Navbar

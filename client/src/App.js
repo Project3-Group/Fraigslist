@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     loggedIn: false,
     username: null,
+    money_made: 0,
     id: null
   }
 
@@ -34,12 +35,11 @@ class App extends Component {
   getUser = () => {
     axios.get('/api/user/').then(response => {
       if (response.data.user) {
-        // console.log(response.data.user);
-        // console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
+          money_made: response.data.user.money_made,
           id: response.data.user._id
         })
       } else {
@@ -59,7 +59,7 @@ class App extends Component {
           <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <p>Hello, {this.state.username}!</p>
+            <p>Hello, {this.state.username}! You've made ${this.state.money_made}!</p>
           }
           {/* Routes to different components */}
           <div>

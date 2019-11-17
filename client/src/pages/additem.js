@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import API from '../utils/Api';
 import axios from 'axios'
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Row, Container, Col, Jumbotron } from 'reactstrap';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+    Card, CardText, CardBody, CardTitle, Row, Container, Col, Jumbotron,
+    Button, Modal, ModalHeader, ModalBody, ModalFooter
+} from 'reactstrap';
 
 class AddItem extends Component {
     state = {
@@ -98,12 +100,13 @@ class AddItem extends Component {
     render() {
         return (
             <div>
+                <Jumbotron className="text-center">
+                    <h1 className="display-3">Add a new item!</h1>
+                    <p className="lead">Fill out the form with the required fields. We'll update your page with how much money you made!</p>
+                </Jumbotron>
                 <Container>
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
-                        <Jumbotron>
-                            
-                        </Jumbotron>
                         </Col>
                     </Row>
                     <Row>
@@ -112,7 +115,7 @@ class AddItem extends Component {
                                 <CardBody>
                                     <CardTitle>
                                         Create a listing.
-                            </CardTitle>
+                                </CardTitle>
                                     <CardText>
                                         <form>
                                             <input
@@ -120,7 +123,7 @@ class AddItem extends Component {
                                                 type="text"
                                                 value={this.state.itemName}
                                                 onChange={this.handleInputChange}
-                                                placeholder="itemName" /><br></br>
+                                                placeholder="Item Name" /><br></br>
 
                                             <input
                                                 name="imageLink"
@@ -134,24 +137,24 @@ class AddItem extends Component {
                                                 type="number"
                                                 value={this.state.quantity}
                                                 onChange={this.handleInputChange}
-                                                placeholder="quantity" /><br></br>
+                                                placeholder="Quantity" /><br></br>
 
                                             <input
                                                 name="price"
                                                 value={this.state.price}
                                                 onChange={this.handleInputChange}
                                                 type="number"
-                                                placeholder="price" /><br></br>
+                                                placeholder="Price" /><br></br>
 
                                             <input
                                                 name="company"
                                                 value={this.state.company}
                                                 onChange={this.handleInputChange}
                                                 type="text"
-                                                placeholder="company" /><br></br>
+                                                placeholder="Company/Brand" /><br></br>
 
                                             <div class="form-group">
-                                                <label for="itemDescription">Edit Description</label>
+                                                <label for="itemDescription">Item Description</label>
                                                 <textarea
                                                     name="itemDescription"
                                                     class="form-control"
@@ -159,13 +162,12 @@ class AddItem extends Component {
                                                     rows="3"
                                                     type="text"
                                                     value={this.state.itemDescription}
-                                                    placeholder="Enter item description. Default: Current"
-                                                    value={this.state.itemDescription}
+                                                    placeholder="Enter item description."
                                                     onChange={this.handleInputChange}
                                                 ></textarea>
                                             </div>
 
-                                            <button onClick={this.handleFormSubmit}>Submit</button>
+                                            <Button onClick={this.handleFormSubmit}>Submit</Button>
                                         </form>
                                     </CardText>
                                 </CardBody>

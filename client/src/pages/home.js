@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Card from '../components/Card'
-import { Link } from 'react-router-dom';
 // import items from "../items.json";
 import API from '../utils/Api';
+import { Row, Container } from 'reactstrap';
 
 
 class Home extends Component {
@@ -22,8 +22,8 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row">
+                <Container>
+                    <Row>
                         {this.state.items.map(cards => (
                             <Card
                                 id={cards._id}
@@ -34,8 +34,8 @@ class Home extends Component {
                                 imageLink={cards.imageLink}
                             />
                         ))}
-                    </div>
-                </div>
+                    </Row>
+                </Container>
             </div>
         );
     };

@@ -3,9 +3,8 @@ import axios from 'axios'
 // import Card from '../components/Card'
 import './pages.css';
 
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Button, Container, Row } from 'reactstrap';
 
-import { Link } from 'react-router-dom';
 // import Modal from '../components/Modal'
 
 // import items from "../items.json";
@@ -43,10 +42,10 @@ class UserItems extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row">
+                <Container>
+                    <Row>
                         {this.state.items.map(cards => (
-                            <Card id={cards._id}>
+                            <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                                 <CardBody>
                                     <CardTitle>
                                         {cards.itemName}
@@ -58,13 +57,13 @@ class UserItems extends Component {
                                         Item Description: {cards.itemDescription}
                                     </CardText>
                                     <form action={'/edititem/' + cards._id} method='get'>
-                                        <button type='submit'>Edit Item</button>
+                                        <Button type='submit'>Edit Item</Button>
                                     </form>
                                 </CardBody>
                             </Card>
                         ))}
-                    </div>
-                </div>
+                    </Row>
+                </Container>
             </div>
         )
     }
