@@ -61,7 +61,6 @@ class SingleItem extends Component {
         window.location.assign('/login');
     };
 
-
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => {
@@ -103,7 +102,7 @@ class SingleItem extends Component {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
-                    API.updateSellerAmountMade( this.state.sellerId, {
+                    API.updateSellerAmountMade(this.state.sellerId, {
                         money_made: newSellerAmountMade
                     }).then(update => {
                         console.log('second chance amount made ' + newSellerAmountMade);
@@ -136,11 +135,11 @@ class SingleItem extends Component {
     render() {
         return (
             <div>
-                {console.log(this.state)}
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
-
+                    </div>
+                    <div className='row'>
                         <div>{this.state.item.itemName}</div>
                     </div>
 
