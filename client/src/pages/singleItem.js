@@ -16,7 +16,8 @@ class SingleItem extends Component {
         sellerAmountMade: null,
         lowStockModal: false,
         noUserModal: false,
-        purchasedModal: false
+        purchasedModal: false,
+        email: ""
     };
 
     componentDidMount() {
@@ -31,7 +32,8 @@ class SingleItem extends Component {
                 return;
             } else {
                 this.setState({
-                    id: response.data.user._id
+                    id: response.data.user._id,
+                    email: response.data.user.email
                 });
             };
         });
@@ -59,7 +61,6 @@ class SingleItem extends Component {
         window.location.assign('/login');
     };
 
-
     getItemDetails = () => {
         API.getItem(this.props.match.params.id)
             .then(res => {
@@ -84,6 +85,8 @@ class SingleItem extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log("thing of interest")
+        console.log(this.state)
         const numPurchased = {
             quantity: this.state.quantity,
         }
@@ -99,7 +102,7 @@ class SingleItem extends Component {
                 API.updateItem(this.props.match.params.id, {
                     quantity: this.state.item.quantity - numPurchased.quantity
                 }).then(update => {
-                    API.updateSellerAmountMade( this.state.sellerId, {
+                    API.updateSellerAmountMade(this.state.sellerId, {
                         money_made: newSellerAmountMade
                     }).then(update => {
                         console.log('second chance amount made ' + newSellerAmountMade);
@@ -113,13 +116,15 @@ class SingleItem extends Component {
                 alert("Congrats")
                 //build body object to include in call
                 let body = {
-                    company: this.state.company,
-                    imageLink: this.state.imageLink,
-                    itemDescription: this.state.itemDescription,
-                    itemName: this.state.itemName,
-                    price: this.state.price
+                    email: this.state.email,
+                    // company: this.state.company,
+                    // imageLink: this.state.imageLink,
+                    // itemDescription: this.state.itemDescription,
+                    // itemName: this.state.itemName,
+                    // price: this.state.price
                 }
-                axios.post("/mail", body)
+
+                axios.post("/mail/" + this.state.id, body)
                 // .then(response => console.log(response))
             }
 
@@ -130,11 +135,11 @@ class SingleItem extends Component {
     render() {
         return (
             <div>
-                {console.log(this.state)}
                 <div className="container">
                     <div className='row'>
                         <div>Price: USD$: {this.state.item.price}</div>
-
+                    </div>
+                    <div className='row'>
                         <div>{this.state.item.itemName}</div>
                     </div>
 

@@ -14,3 +14,9 @@ div div div div div div div img.img.card-img {
     max-height: 150px;
     max-width: 150px;
 }
+
+div#root div.App div div div div.addCard.card {
+    
+    max-height: 450px;
+    max-width: 450px;
+}

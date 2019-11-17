@@ -73,9 +73,9 @@ class Navbar extends Component {
                         <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
                                 <span className="mr-2">
-                                    <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" />
+                                    <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>
                                 </span>
-                                my cart
+                                My Cart
           </button>
                         </Link>
                     </div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import API from '../utils/Api';
 import './pages.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
+    Card, CardTitle, CardText, CardImg, CardBody } from 'reactstrap';
+
 
 import axios from 'axios'
 
@@ -110,14 +112,18 @@ class EditItem extends Component {
                 <div className="container">
                     <div className='row'>
                         <div className="col-md-4">
-                            <div>{this.state.item.itemName}</div>
-                            <div className="row image-row">
+                        <Card body outline color="info">
+                        <CardBody>
+                        <CardTitle className="text-center">{this.state.item.itemName}</CardTitle>
+                            <div className="image-row">
                                 {/* add item detail stuff */}
-                                <img
+                                <CardImg
                                     src={this.state.item.imageLink}
                                     alt={this.state.item.itemName}
                                     id={this.state.item.itemName} />
                             </div>
+                            <CardText>
+
                             <div className='row'>
                                 <div>Current Quantity: {this.state.item.quantity}</div>
                             </div>
@@ -127,10 +133,15 @@ class EditItem extends Component {
                             <div className='row'>
                                 <div>Current Description: {this.state.item.itemDescription}</div>
                             </div>
+                            </CardText>
+                            </CardBody>
+                        </Card>
                         </div>
 
                         <div className="col-md-4">
-                            <div>Submit your new information below.</div>
+                        <Card body outline color="warning">
+                        <CardBody>
+                        <CardTitle className="text-center">Submit your new information below.</CardTitle>
                             <form>
                                 <div className='row'>
                                     <input
@@ -149,7 +160,6 @@ class EditItem extends Component {
                                         placeholder="Default: Current" />
                                 </div>
                                 <div className='row'>
-
                                     <div class="form-group">
                                         <label for="itemDescription">Edit Description</label>
                                         <textarea
@@ -165,18 +175,20 @@ class EditItem extends Component {
                                         ></textarea>
                                     </div>
                                 </div>
-
-                                <button onClick={this.handleFormSubmit}>Submit</button>
+                                <Button onClick={this.handleFormSubmit}>Submit</Button>
                             </form>
+                            </CardBody>
+                        </Card>
                         </div>
 
                         <div className="col-md-4">
+                        <Card body inverse color="danger">
+                        <CardBody>
                             <div>If you don't want this item anymore, you can edit the amount to be 0 and hide it from the store, or hit the delete button and remove it.</div>
-
-                            <button onClick={() => this.handleDeleteRequest(this.props.match.params.id)}>Delete Item</button>
-
+                            <Button color="danger" onClick={() => this.handleDeleteRequest(this.props.match.params.id)}>Delete Item</Button>{' '}
+                            </CardBody>
+</Card>
                         </div>
-
                     </div>
                 </div>
                 <div>

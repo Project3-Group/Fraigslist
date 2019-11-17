@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
 
-    console.log(username, password, email)
+    // console.log(username, password, email)
     // ADD VALIDATION
 
     if (email == undefined) {
