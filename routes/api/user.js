@@ -57,14 +57,17 @@ router.post(
 )
 
 router.get('/', (req, res, next) => {
-    username = req.user.username;
-    User.findOne({ username: username }, (err, user) => {
-        if (req.user) {
-            res.json({ user: user })
-        } else {
-            res.json({ user: null })
-        }
-    });
+    if (req.user) {
+        const username = req.user.username;
+        User.findOne({ username: username }, (err, user) => {
+            if (req.user) {
+                res.json({ user: user })
+            }
+        });
+    } else {
+        res.json({ user: null })
+    }
+
 });
 
 router.get('/:sellerId', (req, res) => {
@@ -74,11 +77,11 @@ router.get('/:sellerId', (req, res) => {
 });
 
 router.put('/:sellerId', (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.sellerId }, {money_made: req.body.money_made}, { new: true })
-    .then(dbUpdate => {
-        res.json(dbUpdate)
-    })
-    .catch(err => res.status(400).json(err));
+    User.findOneAndUpdate({ _id: req.params.sellerId }, { money_made: req.body.money_made }, { new: true })
+        .then(dbUpdate => {
+            res.json(dbUpdate)
+        })
+        .catch(err => res.status(400).json(err));
 });
 
 router.post('/logout', (req, res) => {
