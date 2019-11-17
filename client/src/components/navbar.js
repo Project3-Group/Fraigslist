@@ -70,14 +70,14 @@ class Navbar extends Component {
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title">Super Dope Free Market</h1>
 
-                        <Link to="/cart" className="ml-auto">
+                        {/* <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
                                 <span className="mr-2">
                                     <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>
                                 </span>
                                 My Cart
           </button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </header>
             </NavWrapper>

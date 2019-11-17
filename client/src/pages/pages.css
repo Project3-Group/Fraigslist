@@ -20,3 +20,12 @@ div#root div.App div div div div.addCard.card {
     max-height: 450px;
     max-width: 450px;
 }
+
+.my-items-card {
+    background-color: #333 !important;
+    border-color: #333 !important;
+}
+
+.item-title{
+    font-size: 24px !important;
+}
