@@ -107,59 +107,52 @@ class AddItem extends Component {
                 <Container>
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm="12" md={{ size: 6, offset: 3 }}>
                             <Card body outline color="secondary" className="addCard">
                                 <CardBody>
-                                    <CardTitle>
-                                        Create a listing.
-                                </CardTitle>
                                     <CardText>
                                         <form>
+                                            <div>Listing Title</div>
                                             <input
                                                 name="itemName"
                                                 type="text"
                                                 value={this.state.itemName}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Item Name" /><br></br>
-
+                                            <div>Add an image.</div>
                                             <input
                                                 name="imageLink"
                                                 type="file"
                                                 accept='image/*'
                                                 onChange={this.handleImageChange}
                                                 placeholder="imageLink" /><br></br>
-
+                                            <div>Quantity if your item.</div>
                                             <input
                                                 name="quantity"
                                                 type="number"
                                                 value={this.state.quantity}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Quantity" /><br></br>
-
+                                            <div>Price of your item.</div>
                                             <input
                                                 name="price"
                                                 value={this.state.price}
                                                 onChange={this.handleInputChange}
                                                 type="number"
                                                 placeholder="Price" /><br></br>
-
+                                            <div>Brand of your item.</div>
                                             <input
                                                 name="company"
                                                 value={this.state.company}
                                                 onChange={this.handleInputChange}
                                                 type="text"
                                                 placeholder="Company/Brand" /><br></br>
-
+                                            <div>Provide a description of your item.</div>
                                             <div class="form-group">
-                                                <label for="itemDescription">Item Description</label>
                                                 <textarea
                                                     name="itemDescription"
                                                     class="form-control"
                                                     id="itemDescription"
-                                                    rows="3"
+                                                    rows="2"
                                                     type="text"
                                                     value={this.state.itemDescription}
                                                     placeholder="Enter item description."
@@ -175,6 +168,7 @@ class AddItem extends Component {
                         </Col>
                     </Row>
                 </Container>
+                
                 <div>
                     <Modal toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
                         <ModalHeader>Item Added!</ModalHeader>

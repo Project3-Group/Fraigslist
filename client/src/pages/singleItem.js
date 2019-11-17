@@ -3,7 +3,7 @@ import API from '../utils/Api';
 import './pages.css';
 import './modals.css';
 import axios from 'axios'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Container, Col, Card } from 'reactstrap';
 // const nodemailer = require("nodemailer");
 // const oauth2 = require("oauth2");
 
@@ -135,49 +135,54 @@ class SingleItem extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className='row'>
-                        <div>Price: USD$: {this.state.item.price}</div>
-                    </div>
-                    <div className='row'>
-                        <div>{this.state.item.itemName}</div>
-                    </div>
+                <Container>
+                    <Row>
+                        <Card>
+                            <Col>
+                                <Row className="text-center">
+                                    {this.state.item.itemName}
+                                </Row>
+                                <div className="row image-row">
+                                    {/* columns not working the way outside of react maybe need reactstrap? */}
+                                    {/* {console.log(this.state.item)} */}
+                                    {/* add item detail stuff */}
+                                    <img
+                                        src={this.state.item.imageLink}
+                                        alt={this.state.item.itemName}
+                                        id={this.state.item.itemName} />
+                                </div>
+                                <div className='row'>
+                                    <div style={{ display: "block" }}>Quantity: {this.state.item.quantity}</div>
+                                </div>
+                                <div className='row'>
+                                    <div>Price: USD$: {this.state.item.price}</div>
+                                </div>
+                                <div className='row'>
+                                    <div style={{ display: "block" }}>Item Description: {this.state.item.itemDescription}</div>
+                                </div>
 
-                    <div className="row image-row">
-                        {/* columns not working the way outside of react maybe need reactstrap? */}
-                        {/* {console.log(this.state.item)} */}
-                        {/* add item detail stuff */}
-                        <img
-                            src={this.state.item.imageLink}
-                            alt={this.state.item.itemName}
-                            id={this.state.item.itemName} />
-                    </div>
-                    <div className='row'>
-                        <div style={{ display: "block" }}>Quantity: {this.state.item.quantity}</div>
-                    </div>
-                    <div className='row'>
-                        <div style={{ display: "block" }}>Item Description: {this.state.item.itemDescription}</div>
-                    </div>
+                                <div className="row description-row">
 
-                    <div className="row description-row">
-
-                        {/* stuff to handle item purchases */}
-                        Purchase Quantity:
+                                    {/* stuff to handle item purchases */}
+                                    Purchase Quantity:
                         {/* figure out how to make this box smaller - aethetic purposes only */}
-                    </div>
-                    <div className='row'>
-                        <form>
-                            <input
-                                name="quantity"
-                                type="number"
-                                value={this.state.quantity}
-                                onChange={this.handleInputChange}
-                                placeholder="quantity" />
+                                </div>
+                                <div className='row'>
+                                    <form>
+                                        <input
+                                            name="quantity"
+                                            type="number"
+                                            value={this.state.quantity}
+                                            onChange={this.handleInputChange}
+                                            placeholder="quantity" />
 
-                            <button onClick={this.handleFormSubmit}>Submit</button>
-                        </form>
-                    </div>
-                </div>
+                                        <button onClick={this.handleFormSubmit}>Submit</button>
+                                    </form>
+                                </div>
+                            </Col>
+                        </Card>
+                    </Row>
+                </Container>
 
                 <div>
                     <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>

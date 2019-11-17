@@ -16,8 +16,6 @@ class UserItems extends Component {
         items: []
     };
 
-    // need to grab user id to get all user items?
-
     componentDidMount() {
         this.getUser();
     }
