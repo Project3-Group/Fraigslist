@@ -3,7 +3,7 @@ import axios from 'axios'
 // import Card from '../components/Card'
 import './pages.css';
 
-import { Card, CardImg, CardText, CardBody, CardTitle, Button, Container, Row } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Button, Container, Row, Col } from 'reactstrap';
 
 // import Modal from '../components/Modal'
 
@@ -44,24 +44,26 @@ class UserItems extends Component {
             <div>
                 <Container>
                     <Row>
-                        {this.state.items.map(cards => (
-                            <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                                <CardBody>
-                                    <CardTitle>
-                                        {cards.itemName}
-                                    </CardTitle>
-                                    <CardImg className="img" src={cards.imageLink} />
-                                    <CardText>
-                                        Price: ${cards.price}<br></br>
-                                        Quantity: {cards.quantity}<br></br>
-                                        Item Description: {cards.itemDescription}
-                                    </CardText>
-                                    <form action={'/edititem/' + cards._id} method='get'>
-                                        <Button type='submit'>Edit Item</Button>
-                                    </form>
-                                </CardBody>
-                            </Card>
-                        ))}
+                        <Col lg='3' md='6' sm='12'>
+                            {this.state.items.map(cards => (
+                                <Card body inverse className='my-items-card'>
+                                    <CardBody>
+                                        <CardTitle className='text-center item-title'>
+                                            {cards.itemName}
+                                        </CardTitle>
+                                        <CardImg width='100%' className="img" src={cards.imageLink} />
+                                        <CardText>
+                                            Price: ${cards.price}<br></br>
+                                            Quantity: {cards.quantity}<br></br>
+                                            Item Description: {cards.itemDescription}
+                                        </CardText>
+                                        <form action={'/edititem/' + cards._id} method='get'>
+                                            <Button type='submit'>Edit Item</Button>
+                                        </form>
+                                    </CardBody>
+                                </Card>
+                            ))}
+                        </Col>
                     </Row>
                 </Container>
             </div>
