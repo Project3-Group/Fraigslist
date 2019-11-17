@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from '../utils/Api';
 import axios from 'axios'
 import {
-    Card, CardText, CardBody, CardTitle, Row, Container, Col, Jumbotron,
+    Card, CardText, CardBody, Row, Container, Col, Jumbotron,
     Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
