@@ -13,8 +13,8 @@ body {
   font-family: 'Jomolhari', serif !important;
   
   color: var(--mainDark) !important;
-  background-image: url('https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/d/e/dea8c60d19e758c8744437e7b91b73c10ad0e030.jpeg') !important;
-  background-repeat: no-repeat, repeat;
+  background: linear-gradient(243.87deg, #607d8b 30.6%, #371933 130.6%) !important;
+  /* background-repeat: no-repeat, repeat; */
   background-size: cover
 }
 .text-title {
@@ -53,11 +53,11 @@ body {
   font-size: large;
 }
 
-.navbar {
+/* .navbar {
   display: flex;
   margin-top: auto;
   justify-content: flex-start !important;
-}
+} */
 
 .btn-black {
   background: transparent;

@@ -15,6 +15,8 @@ import Cart from './pages/MyCart'
 
 import Navbar from './components/navbar'
 
+import './App.css'
+
 
 class App extends Component {
   state = {
