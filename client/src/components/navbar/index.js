@@ -1,10 +1,10 @@
 //New Navbar
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../logo.svg';
+import logo from '../../logo.svg';
 //import '../App.css';
 import axios from 'axios'
-
+import './nav.css'
 import styled from 'styled-components';
 
 
@@ -33,7 +33,7 @@ class Navbar extends Component {
         // console.log(this.props);
 
         return (
-            <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
+            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
@@ -68,7 +68,7 @@ class Navbar extends Component {
                     <div className="navbar-nav align-items-right">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">Super Dope Free Market</h1>
+                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
 
                         {/* <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
@@ -86,30 +86,23 @@ class Navbar extends Component {
 }
 
 const NavWrapper = styled.nav`
-  background: var(--mainBlue);
   .nav-link {
     color: var(--mainWhite) !important;
     font-size:1.3rem;
     text-transform:capitalize;
   }
-  background-image: url("https://freefeast.info/wp-content/uploads//2013/07/navigationbar@2x1.png");
+  .scrolling-text {}
   .nav-link {
     color: var(--mainWhite) !important;
     font-size:1.3rem;
     text-transform:capitalize;
   }
-  .cartlog {
-    width: 60px !important;
-    height: 30px !important;
-  }
+
   .nav-link{
     color: var(--mainDark) !important;
 
   }
-  .header-cart{
-    background-color: var(--lightBlue);
 
-  }
   @media (max-width: 576px) {
     .navbar-nav {
       flex-direction: row !important;

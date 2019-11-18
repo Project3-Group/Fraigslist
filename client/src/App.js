@@ -12,9 +12,8 @@ import UserItems from './pages/useritems';
 import EditItem from './pages/edititem';
 
 import Cart from './pages/MyCart'
-
-import Navbar from './components/navbar'
-
+import Navbar from './components/navbar/index'
+import './App.css'
 
 class App extends Component {
   state = {
@@ -92,6 +91,7 @@ class App extends Component {
                     updateUser={this.updateUser}
                   />}
               />
+               
               <Route path="/cart" component={Cart} />
 
               <Route component={NoMatch} />
