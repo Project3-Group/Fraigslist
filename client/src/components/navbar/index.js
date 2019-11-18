@@ -6,10 +6,7 @@ import logo from '../../logo.svg';
 import axios from 'axios'
 import './nav.css'
 import styled from 'styled-components';
-
-
 class Navbar extends Component {
-
     logout = event => {
         event.preventDefault()
         // console.log('logging out')
@@ -26,15 +23,12 @@ class Navbar extends Component {
             // console.log('Logout error')
         })
     }
-
     render() {
         const loggedIn = this.props.loggedIn;
         // console.log('navbar render, props: ')
         // console.log(this.props);
-
         return (
             <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
-
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
                         {loggedIn ? (
@@ -68,8 +62,7 @@ class Navbar extends Component {
                     <div className="navbar-nav align-items-right">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
-
+                        <h1 className="App-title scrolling-text" id="webName">Fraigslist</h1>
                         {/* <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
                                 <span className="mr-2">
@@ -84,7 +77,6 @@ class Navbar extends Component {
         );
     }
 }
-
 const NavWrapper = styled.nav`
   .nav-link {
     color: var(--mainWhite) !important;
@@ -97,18 +89,12 @@ const NavWrapper = styled.nav`
     font-size:1.3rem;
     text-transform:capitalize;
   }
-
   .nav-link{
     color: var(--mainDark) !important;
-
   }
-
   @media (max-width: 576px) {
     .navbar-nav {
       flex-direction: row !important;
   
 `;
-
-
-
 export default Navbar

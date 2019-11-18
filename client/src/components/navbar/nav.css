@@ -1,3 +1,7 @@
 .NEWCLASSNAME {
-    background-color: blue;
+    background-color: #4831d4;
+}
+#webName{
+    font-size: 65px;
+    color: #ccf381;
 }
