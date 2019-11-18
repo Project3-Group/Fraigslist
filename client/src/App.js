@@ -16,6 +16,7 @@ import Cart from './pages/MyCart'
 import Navbar from './components/navbar'
 
 import './App.css'
+import { Card, CardBody, CardText } from 'reactstrap';
 
 
 class App extends Component {
@@ -58,10 +59,18 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
+          <Navbar updateUser={this.updateUser} userId={this.state.id} username={this.state.username} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <p>Hello, {this.state.username}! You've made ${this.state.money_made}!</p>
+          <Card className='money-card'>
+            <CardBody>
+              <CardText>
+                <p>You Have Made</p>
+                <h3>${this.state.money_made}</h3>
+                <p>As A Seller!</p>
+              </CardText>
+            </CardBody>
+          </Card>
           }
           {/* Routes to different components */}
           <div>

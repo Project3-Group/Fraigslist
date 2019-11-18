@@ -99,10 +99,9 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div>
-                <Jumbotron  className="text-center">
-                    <h1 className="display-3 text-primary">Add a new item!</h1>
-                    <p className="lead text-primary">Fill out the form with the required fields. We'll update your page with how much money you made!</p>
+            <div className='add-item'>
+                <Jumbotron  fluid className="text-center" style={{opacity:'.7', backgroundColor:'#444'}}>
+                    <h1 className="display-5">Add a new item!</h1>
                 </Jumbotron>
                 <Container>
                     <Row>

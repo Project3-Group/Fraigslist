@@ -29,3 +29,7 @@ div#root div.App div div div div.addCard.card {
 .item-title{
     font-size: 24px !important;
 }
+
+.add-item {
+    color: #111 !important;
+}

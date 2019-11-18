@@ -149,7 +149,7 @@ class EditItem extends Component {
                                         type="number"
                                         value={this.state.quantity}
                                         onChange={this.handleInputChange}
-                                        placeholder="Default: Current" />
+                                        placeholder="Default: Current Quantity" />
                                 </div>
                                 <div className='row'>
                                     <input
@@ -157,7 +157,7 @@ class EditItem extends Component {
                                         type="number"
                                         value={this.state.price}
                                         onChange={this.handleInputChange}
-                                        placeholder="Default: Current" />
+                                        placeholder="Default: Current Price" />
                                 </div>
                                 <div className='row'>
                                     <div class="form-group">
@@ -169,7 +169,7 @@ class EditItem extends Component {
                                             rows="3"
                                             type="text"
                                             placeholder="Enter new description.
-                                            Default: Current"
+                                            Default: Current Desc."
                                             // value={this.state.description}
                                             onChange={this.handleInputChange}
                                         ></textarea>
