@@ -43,8 +43,8 @@ class UserItems extends Component {
                 <Container>
                     <Row>
                         <Col lg='3' md='6' sm='12'>
-                            {this.state.items.map(cards => (
-                                <Card body inverse className='my-items-card'>
+                            {this.state.items.map((cards, i) => (
+                                <Card key={cards[i]} body inverse className='my-items-card'>
                                     <CardBody>
                                         <CardTitle className='text-center item-title'>
                                             {cards.itemName}

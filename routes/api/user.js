@@ -72,7 +72,11 @@ router.get('/', (req, res, next) => {
 
 router.get('/:sellerId', (req, res) => {
     User.findOne({ _id: req.params.sellerId }, (err, user) => {
-        res.json({ money_made: user.money_made });
+        if (user) {
+            res.json({ money_made: user.money_made });
+        } else {
+            res.json({ money_made: null })
+        }
     });
 });
 
