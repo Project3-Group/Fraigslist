@@ -57,8 +57,12 @@ class SingleItem extends Component {
         })
     };
 
-    redirect = () => {
+    loginRedirect = () => {
         window.location.assign('/login');
+    };
+
+    purchaseRedirect = () => {
+        window.location.assign('/');
     };
 
     getItemDetails = () => {
@@ -113,7 +117,6 @@ class SingleItem extends Component {
                     // console.log(err)
                 })
 
-                alert("Congrats")
                 //build body object to include in call
                 let body = {
                     email: this.state.email,
@@ -137,7 +140,7 @@ class SingleItem extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Card>
+                        <Card className="text-muted">
                             <Col>
                                 <Row className="text-center">
                                     {this.state.item.itemName}
@@ -185,7 +188,7 @@ class SingleItem extends Component {
                 </Container>
 
                 <div>
-                    <Modal toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
+                    <Modal className="text-muted" toggle={this.toggleLowStockModal} isOpen={this.state.lowStockModal} style={{ opacity: 1 }}>
                         <ModalHeader>Not Enough Stock!</ModalHeader>
                         <ModalBody>There isn't enough of this in stock for your purchase. Please try a lower amount.</ModalBody>
                         <ModalFooter>
@@ -193,19 +196,19 @@ class SingleItem extends Component {
                         </ModalFooter>
                     </Modal>
 
-                    <Modal toggle={this.redirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
+                    <Modal className="text-muted" toggle={this.loginRedirect} isOpen={this.state.noUserModal} style={{ opacity: 1 }}>
                         <ModalHeader>No User Found!</ModalHeader>
                         <ModalBody>You aren't logged in! Close this and log in to buy.</ModalBody>
                         <ModalFooter>
-                            <Button color="warning" onClick={this.redirect}>Close</Button>
+                            <Button color="warning" onClick={this.loginRedirect}>Close</Button>
                         </ModalFooter>
                     </Modal>
 
-                    <Modal toggle={this.togglePurchasedModal} isOpen={this.state.purchasedModal} style={{ opacity: 1 }}>
+                    <Modal className="text-muted" toggle={this.purchaseRedirect} isOpen={this.state.purchasedModal} style={{ opacity: 1 }}>
                         <ModalHeader>Purchased!</ModalHeader>
                         <ModalBody>You just bought this item. Check your email.</ModalBody>
                         <ModalFooter>
-                            <Button color="primary" onClick={this.togglePurchasedModal}>Close</Button>
+                            <Button color="primary" onClick={this.purchaseRedirect}>Close</Button>
                         </ModalFooter>
                     </Modal>
                 </div>

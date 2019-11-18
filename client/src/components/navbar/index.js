@@ -44,8 +44,18 @@ class Navbar extends Component {
                                 <Link to="/" className="btn btn-link text-secondary">
                                     <span className="text-secondary">Home</span>
                                 </Link>
+<<<<<<< Updated upstream
                                 <Link to="/addItem" className="btn btn-link text-secondary">
                                     <span className="text-secondary">Add an Item</span>
+=======
+                                <div className="navbar-nav align-items-right">
+                                    <div id="top-filler"></div>
+                                    <img src={logo} className="App-logo" alt="logo" />
+                                    <h1 className="App-title scrolling-text">Fraigslist</h1>
+                                </div>
+                                <Link to="/addItem" className="btn outline btn-link text-secondary">
+                                    <span className="text-secondary btn-black">Add an Item</span>
+>>>>>>> Stashed changes
                                 </Link>
                                 <Link to={'/useritems/' + this.props.userId} className='btn btn-link'>
                                     <span className='text-secondary my-items'>My Items</span>

@@ -100,53 +100,53 @@ class AddItem extends Component {
     render() {
         return (
             <div>
-                <Jumbotron className="text-center">
-                    <h1 className="display-3">Add a new item!</h1>
-                    <p className="lead">Fill out the form with the required fields. We'll update your page with how much money you made!</p>
+                <Jumbotron  className="text-center">
+                    <h1 className="display-3 text-primary">Add a new item!</h1>
+                    <p className="lead text-primary">Fill out the form with the required fields. We'll update your page with how much money you made!</p>
                 </Jumbotron>
                 <Container>
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
-                            <Card body outline color="secondary" className="addCard">
+                            <Card className="text-primary" body outline color="secondary" className="addCard">
                                 <CardBody>
                                     <CardText>
                                         <form>
-                                            <div>Listing Title</div>
+                                            <div className="text-muted">Listing Title</div>
                                             <input
                                                 name="itemName"
                                                 type="text"
                                                 value={this.state.itemName}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Item Name" /><br></br>
-                                            <div>Add an image.</div>
+                                            <div className="text-muted">Add an image.</div>
                                             <input
                                                 name="imageLink"
                                                 type="file"
                                                 accept='image/*'
                                                 onChange={this.handleImageChange}
                                                 placeholder="imageLink" /><br></br>
-                                            <div>Quantity if your item.</div>
+                                            <div className="text-muted">Quantity if your item.</div>
                                             <input
                                                 name="quantity"
                                                 type="number"
                                                 value={this.state.quantity}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Quantity" /><br></br>
-                                            <div>Price of your item.</div>
+                                            <div className="text-muted">Price of your item.</div>
                                             <input
                                                 name="price"
                                                 value={this.state.price}
                                                 onChange={this.handleInputChange}
                                                 type="number"
                                                 placeholder="Price" /><br></br>
-                                            <div>Brand of your item.</div>
+                                            <div className="text-muted">Brand of your item.</div>
                                             <input
                                                 name="company"
                                                 value={this.state.company}
                                                 onChange={this.handleInputChange}
                                                 type="text"
                                                 placeholder="Company/Brand" /><br></br>
-                                            <div>Provide a description of your item.</div>
+                                            <div className="text-muted">Provide a description of your item.</div>
                                             <div class="form-group">
                                                 <textarea
                                                     name="itemDescription"
@@ -170,7 +170,7 @@ class AddItem extends Component {
                 </Container>
                 
                 <div>
-                    <Modal toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
+                    <Modal className="text-muted" toggle={this.redirect} isOpen={this.state.itemAddedModal} style={{ opacity: 1 }}>
                         <ModalHeader>Item Added!</ModalHeader>
                         <ModalBody>Item has been added to your store.</ModalBody>
                         <ModalFooter>

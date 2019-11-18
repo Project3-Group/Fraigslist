@@ -113,7 +113,7 @@ class EditItem extends Component {
                     <div className='row'>
                         <div className="col-md-4">
                         <Card body outline color="info">
-                        <CardBody>
+                        <CardBody className="text-info">
                         <CardTitle className="text-center">{this.state.item.itemName}</CardTitle>
                             <div className="image-row">
                                 {/* add item detail stuff */}
@@ -140,7 +140,7 @@ class EditItem extends Component {
 
                         <div className="col-md-4">
                         <Card body outline color="warning">
-                        <CardBody>
+                        <CardBody className="text-warning">
                         <CardTitle className="text-center">Submit your new information below.</CardTitle>
                             <form>
                                 <div className='row'>
@@ -192,7 +192,7 @@ class EditItem extends Component {
                     </div>
                 </div>
                 <div>
-                <Modal toggle={this.redirect} isOpen={this.state.updateModal} style={{ opacity: 1 }}>
+                <Modal className="text-muted" toggle={this.redirect} isOpen={this.state.updateModal} style={{ opacity: 1 }}>
                         <ModalHeader>Updated!</ModalHeader>
                         <ModalBody>Your item has been updated. Close to view your items.</ModalBody>
                         <ModalFooter>
@@ -200,7 +200,7 @@ class EditItem extends Component {
                         </ModalFooter>
                     </Modal>
 
-                    <Modal toggle={this.redirect} isOpen={this.state.deleteItemModal} style={{ opacity: 1 }}>
+                    <Modal className="text-muted" toggle={this.redirect} isOpen={this.state.deleteItemModal} style={{ opacity: 1 }}>
                         <ModalHeader>Item removed!</ModalHeader>
                         <ModalBody>This item has been removed from your store.</ModalBody>
                         <ModalFooter>
