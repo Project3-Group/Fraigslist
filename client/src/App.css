@@ -13,15 +13,9 @@ body {
   font-family: 'Jomolhari', serif !important;
   background-color: black;
   color: var(--mainDark) !important;
-<<<<<<< HEAD
   background: linear-gradient(243.87deg, #607d8b 30.6%, #371933 130.6%) !important;
   /* background-repeat: no-repeat, repeat; */
   background-size: cover
-=======
-  background-image: url('https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/d/e/dea8c60d19e758c8744437e7b91b73c10ad0e030.jpeg') !important;
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
->>>>>>> master
 }
 .text-title {
   font-family: 'Yeon Sung', cursive;
@@ -60,20 +54,12 @@ body {
   font-size: large;
 }
 
-<<<<<<< HEAD
-/* .navbar {
-  display: flex;
-  margin-top: auto;
-  justify-content: flex-start !important;
-} */
-=======
   /* .navbar {
     display: flex;
     margin-top: auto;
     background-color: gray;
     justify-content: flex-start !important;
   } */
->>>>>>> master
 
 .btn-black {
   background: transparent;
