@@ -33,7 +33,7 @@ class Navbar extends Component {
         // console.log(this.props);
 
         return (
-            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
+            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 navCSS">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
@@ -44,10 +44,6 @@ class Navbar extends Component {
                                 <Link to="/" className="btn btn-link text-secondary">
                                     <span className="text-secondary">Home</span>
                                 </Link>
-<<<<<<< Updated upstream
-                                <Link to="/addItem" className="btn btn-link text-secondary">
-                                    <span className="text-secondary">Add an Item</span>
-=======
                                 <div className="navbar-nav align-items-right">
                                     <div id="top-filler"></div>
                                     <img src={logo} className="App-logo" alt="logo" />
@@ -55,7 +51,6 @@ class Navbar extends Component {
                                 </div>
                                 <Link to="/addItem" className="btn outline btn-link text-secondary">
                                     <span className="text-secondary btn-black">Add an Item</span>
->>>>>>> Stashed changes
                                 </Link>
                                 <Link to={'/useritems/' + this.props.userId} className='btn btn-link'>
                                     <span className='text-secondary my-items'>My Items</span>
@@ -75,10 +70,10 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
-                    <div className="navbar-nav align-items-right">
+                    {/* <div className="navbar-nav align-items-right">
                         <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
+                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1> */}
 
                         {/* <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
@@ -88,7 +83,7 @@ class Navbar extends Component {
                                 My Cart
           </button>
                         </Link> */}
-                    </div>
+                    {/* </div> */}
                 </header>
             </NavWrapper>
         );
