@@ -13,7 +13,7 @@ import API from '../utils/Api';
 
 class UserItems extends Component {
     state = {
-        items: []
+        items: [],
     };
 
     componentDidMount() {
@@ -30,7 +30,7 @@ class UserItems extends Component {
                 console.log(res.data)
                 let data = res.data
                 this.setState({
-                    items: data
+                    items: data,
                 })
             })
             // .catch(err => console.log(err))
@@ -42,8 +42,8 @@ class UserItems extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col lg='3' md='6' sm='12'>
-                            {this.state.items.map((cards, i) => (
+                        {this.state.items.map((cards, i) => (
+                            <Col lg='3' md='6' sm='12'>
                                 <Card key={cards[i]} body inverse className='my-items-card'>
                                     <CardBody>
                                         <CardTitle className='text-center item-title'>
@@ -60,8 +60,8 @@ class UserItems extends Component {
                                         </form>
                                     </CardBody>
                                 </Card>
-                            ))}
-                        </Col>
+                            </Col>
+                        ))}
                     </Row>
                 </Container>
             </div>

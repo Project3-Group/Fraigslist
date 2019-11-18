@@ -52,25 +52,30 @@ class Navbar extends Component {
                                 <div className="heading-groups" id='logout'>
                                     <Link to="#" className="btn outline btn-link text-secondary" onClick={this.logout}>
                                         <span className="text-secondary btn-black">Logout</span></Link>
-                                        <span style={{opacity:'.5'}}>({this.props.username})</span>
+                                    <span style={{ opacity: '.5' }}>({this.props.username})</span>
                                 </div>
                             </section>
                         ) : (
                                 <section className="section-header">
-                                    <Link to="/" className="btn outline btn-link text-secondary">
-                                        <span className="text-secondary btn-black">Home</span>
-                                    </Link>
-                                    <div className=" align-items-right">
+                                    <div className='link-group'>
+                                        <Link to="/" className="btn outline btn-link text-secondary">
+                                            <span className="text-secondary btn-black">Home</span>
+                                        </Link>
+                                        <Link to="/login" className="btn outline btn-link text-secondary">
+                                            <span className="text-secondary btn-black">Login</span>
+                                        </Link>
+                                        <Link to="/signup" className="btn outline btn-link">
+                                            <span className="text-secondary btn-black">Sign-Up</span>
+                                        </Link>
+                                    </div>
+                                    <div className='heading-groups'>
                                         <div id="top-filler"></div>
                                         <img src={logo} className="App-logo" alt="logo" />
                                         <h1 className="App-title scrolling-text" id="webName">Fraigslist</h1>
                                     </div>
-                                    <Link to="/login" className="btn outline btn-link text-secondary">
-                                        <span className="text-secondary btn-black">Login</span>
-                                    </Link>
-                                    <Link to="/signup" className="btn outline btn-link">
-                                        <span className="text-secondary btn-black">Sign-Up</span>
-                                    </Link>
+                                    <div className='heading-groups' id='logout'>
+                                        <div id='take-up-space' style={{ opacity: '0' }}>Logout (space)</div>
+                                    </div>
                                 </section>
                             )}
                     </div>
@@ -80,7 +85,7 @@ class Navbar extends Component {
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title scrolling-text">Super Dope Free Market</h1> */}
 
-                        {/* <Link to="/cart" className="ml-auto">
+                    {/* <Link to="/cart" className="ml-auto">
                             <button className="header-cart">
                                 <span className="mr-2">
                                     <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>

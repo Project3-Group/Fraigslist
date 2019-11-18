@@ -32,6 +32,7 @@ class Home extends Component {
                                 price={cards.price}
                                 quantity={cards.quantity}
                                 imageLink={cards.imageLink}
+                                className='home-card'
                             />
                         ))}
                     </Row>
