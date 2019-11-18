@@ -1,6 +1,15 @@
-.NEWCLASSNAME {
-    background-color: #330033;
-    /* display: flex !important; */
-    /* justify-content: space-between !important; */
-    /* align-items: center !important; */
+
+.navCSS {
+    background-color: #1a001a;
+
+    /* background-color: #1a001a; */
+    /* background-color: #4831d4; */
+    /* text-decoration: #ccf381; */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
+#webName{
+    color: #ccf381;
+    font-size: 50px;
+} 

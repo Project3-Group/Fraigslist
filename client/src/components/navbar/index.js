@@ -6,10 +6,7 @@ import logo from '../../logo.svg';
 import axios from 'axios'
 import './nav.css'
 import styled from 'styled-components';
-
-
 class Navbar extends Component {
-
     logout = event => {
         event.preventDefault()
         // console.log('logging out')
@@ -26,14 +23,12 @@ class Navbar extends Component {
             // console.log('Logout error')
         })
     }
-
     render() {
         const loggedIn = this.props.loggedIn;
         // console.log('navbar render, props: ')
         // console.log(this.props);
-
         return (
-            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
+            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 navCSS">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-12" >
@@ -52,7 +47,7 @@ class Navbar extends Component {
                                 </div>
                                 <div className="heading-groups">
                                     <img src={logo} className="App-logo" alt="logo" />
-                                    <h1 className="App-title">Fraigslist</h1>
+                                    <h1 className="App-title" id='webName'>Fraigslist</h1>
                                 </div>
                                 <div className="heading-groups" id='logout'>
                                     <Link to="#" className="btn outline btn-link text-secondary" onClick={this.logout}>
@@ -68,7 +63,7 @@ class Navbar extends Component {
                                     <div className=" align-items-right">
                                         <div id="top-filler"></div>
                                         <img src={logo} className="App-logo" alt="logo" />
-                                        <h1 className="App-title scrolling-text">Fraigslist</h1>
+                                        <h1 className="App-title scrolling-text" id="webName">Fraigslist</h1>
                                     </div>
                                     <Link to="/login" className="btn outline btn-link text-secondary">
                                         <span className="text-secondary btn-black">Login</span>
@@ -79,12 +74,27 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
+
+                    {/* <div className="navbar-nav align-items-right">
+                        <div id="top-filler"></div>
+                        <img src={logo} className="App-logo" alt="logo" />
+                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1> */}
+
+                        {/* <Link to="/cart" className="ml-auto">
+                            <button className="header-cart">
+                                <span className="mr-2">
+                                    <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>
+                                </span>
+                                My Cart
+          </button>
+                        </Link> */}
+                    {/* </div> */}
+
                 </header>
             </NavWrapper>
         );
     }
 }
-
 const NavWrapper = styled.nav`
   .nav-link {
     color: var(--mainWhite) !important;
@@ -97,18 +107,12 @@ const NavWrapper = styled.nav`
     font-size:1.3rem;
     text-transform:capitalize;
   }
-
   .nav-link{
     color: var(--mainDark) !important;
-
   }
-
   @media (max-width: 576px) {
     .navbar-nav {
       flex-direction: row !important;
   
 `;
-
-
-
 export default Navbar
