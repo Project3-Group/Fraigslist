@@ -99,7 +99,7 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div>
+            <div className='add-item'>
                 <Jumbotron className="text-center">
                     <h1 className="display-3">Add a new item!</h1>
                     <p className="lead">Fill out the form with the required fields. We'll update your page with how much money you made!</p>

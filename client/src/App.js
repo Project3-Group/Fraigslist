@@ -58,10 +58,10 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar updateUser={this.updateUser} userId={this.state.id} loggedIn={this.state.loggedIn} />
+          <Navbar updateUser={this.updateUser} userId={this.state.id} username={this.state.username} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <p>Hello, {this.state.username}! You've made ${this.state.money_made}!</p>
+            <p>You've made ${this.state.money_made}!</p>
           }
           {/* Routes to different components */}
           <div>

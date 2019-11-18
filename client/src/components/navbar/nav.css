@@ -1,6 +1,6 @@
 .NEWCLASSNAME {
-    background-color: #1a001a;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    background-color: #330033;
+    /* display: flex !important; */
+    /* justify-content: space-between !important; */
+    /* align-items: center !important; */
 }

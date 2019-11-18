@@ -36,35 +36,39 @@ class Navbar extends Component {
             <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
 
                 <header className="navbar App-header" id="nav-container">
-                    <div className="col-4" >
+                    <div className="col-12" >
                         {loggedIn ? (
-                            <section className="navbar-nav align-items-left">
-                                <Link to="#" className="btn outline btn-link text-secondary" onClick={this.logout}>
-                                    <span className="text-secondary btn-black">Logout</span></Link>
-                                <Link to="/" className="btn outline btn-link text-secondary">
-                                    <span className="text-secondary btn-black">Home</span>
-                                </Link>
-                                <div className="navbar-nav align-items-right">
-                                    <div id="top-filler"></div>
-                                    <img src={logo} className="App-logo" alt="logo" />
-                                    <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
-                                </div>
-                                <Link to="/addItem" className="btn outline btn-link text-secondary">
-                                    <span className="text-secondary btn-black">Add an Item</span>
-                                </Link>
-                                <Link to={'/useritems/' + this.props.userId} className='btn outline btn-link text-secondary'>
-                                    <span className='text-secondary my-items btn-black'>My Items</span>
-                                </Link>
-                            </section>
-                        ) : (
-                                <section className="navbar-nav align-items-left">
+                            <section className="section-header">
+                                <div className="link-group">
                                     <Link to="/" className="btn outline btn-link text-secondary">
                                         <span className="text-secondary btn-black">Home</span>
                                     </Link>
-                                    <div className="navbar-nav align-items-right">
+                                    <Link to="/addItem" className="btn outline btn-link text-secondary">
+                                        <span className="text-secondary btn-black">Add an Item</span>
+                                    </Link>
+                                    <Link to={'/useritems/' + this.props.userId} className='btn outline btn-link text-secondary'>
+                                        <span className='text-secondary my-items btn-black'>My Items</span>
+                                    </Link>
+                                </div>
+                                <div className="heading-groups">
+                                    <img src={logo} className="App-logo" alt="logo" />
+                                    <h1 className="App-title">Fraigslist</h1>
+                                </div>
+                                <div className="heading-groups" id='logout'>
+                                    <Link to="#" className="btn outline btn-link text-secondary" onClick={this.logout}>
+                                        <span className="text-secondary btn-black">Logout</span></Link>
+                                        <span style={{opacity:'.5'}}>({this.props.username})</span>
+                                </div>
+                            </section>
+                        ) : (
+                                <section className="section-header">
+                                    <Link to="/" className="btn outline btn-link text-secondary">
+                                        <span className="text-secondary btn-black">Home</span>
+                                    </Link>
+                                    <div className=" align-items-right">
                                         <div id="top-filler"></div>
                                         <img src={logo} className="App-logo" alt="logo" />
-                                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
+                                        <h1 className="App-title scrolling-text">Fraigslist</h1>
                                     </div>
                                     <Link to="/login" className="btn outline btn-link text-secondary">
                                         <span className="text-secondary btn-black">Login</span>
