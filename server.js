@@ -55,9 +55,14 @@ app.post("/mail/:id", (req, res) => {
         var mailOptions = {
             from: '"Fraigslist" <24hrbidder@gmail.com>',
             to: res.email,
+            subject: "Nodemailer test",
+            text: "It's working",
+            from: '"Fraigslist" <24hrbidder@gmail.com>',
+            to: res.email,
             subject: "Your Order || Fraigslist",
             html: "<h3>Hey there! </h3><br> <h3>This email is to confirm your recent purchase on Fraigslist. Your order is on it's way!</h3>"
         }
+        
         transporter.sendMail(mailOptions, function (err, res) {
             if (err) {
                 console.log(err);

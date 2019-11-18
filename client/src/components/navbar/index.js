@@ -28,7 +28,8 @@ class Navbar extends Component {
         // console.log('navbar render, props: ')
         // console.log(this.props);
         return (
-            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 NEWCLASSNAME">
+            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5 navCSS">
+
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
                         {loggedIn ? (
@@ -41,7 +42,8 @@ class Navbar extends Component {
                                 <div className="navbar-nav align-items-right">
                                     <div id="top-filler"></div>
                                     <img src={logo} className="App-logo" alt="logo" />
-                                    <h1 className="App-title scrolling-text">Super Dope Free Market</h1>
+                                    <h1 className="App-title scrolling-text">Fraigslist</h1>
+
                                 </div>
                                 <Link to="/addItem" className="btn outline btn-link text-secondary">
                                     <span className="text-secondary btn-black">Add an Item</span>
@@ -69,6 +71,22 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
+
+                    {/* <div className="navbar-nav align-items-right">
+                        <div id="top-filler"></div>
+                        <img src={logo} className="App-logo" alt="logo" />
+                        <h1 className="App-title scrolling-text">Super Dope Free Market</h1> */}
+
+                        {/* <Link to="/cart" className="ml-auto">
+                            <button className="header-cart">
+                                <span className="mr-2">
+                                    <img className="cartlog" src="https://png.pngtree.com/png_detail/20181017/flame-shopping-cart-icon-png-clipart_810185.png" alt="Shopping cart"/>
+                                </span>
+                                My Cart
+          </button>
+                        </Link> */}
+                    {/* </div> */}
+
                 </header>
             </NavWrapper>
         );
