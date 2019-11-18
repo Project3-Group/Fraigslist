@@ -64,13 +64,19 @@ If you want to buy an item, just click the picture to get the description of it 
 
 !["buydemo"](client/public/images/buydemo.gif)
 
-6. Email notification
+6. Earning money
+
+Once your item sold, we will update your page with how much you've made on our app.
+
+!["earningmoney"](client/public/images/earningdemo.gif)
+
+7. Email notification
 
 Once you buy an item, if you signed up with your real email, you will recieve a generic email. 
 
 !["email"](client/public/images/emaildemo.gif)
 
-7. Errors
+8. Errors
 
 If you do some no-no's, our app will be upset with you and show you disapproval. 
 
