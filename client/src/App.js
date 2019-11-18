@@ -12,8 +12,11 @@ import UserItems from './pages/useritems';
 import EditItem from './pages/edititem';
 
 import Cart from './pages/MyCart'
-import Navbar from './components/navbar/index'
+
+import Navbar from './components/navbar'
+
 import './App.css'
+
 
 class App extends Component {
   state = {

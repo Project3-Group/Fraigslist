@@ -12,10 +12,10 @@
 body {
   font-family: 'Jomolhari', serif !important;
   background-color: black;
-  color: var(--mainDark) !important;
-  background-image: url('https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/d/e/dea8c60d19e758c8744437e7b91b73c10ad0e030.jpeg') !important;
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
+  color: #eee !important;
+  background-image: linear-gradient(243.87deg, #222 30.6%, #00001a 130.6%) !important;
+  /* background-repeat: no-repeat, repeat; */
+  background-size: cover
 }
 .text-title {
   font-family: 'Yeon Sung', cursive;
@@ -48,6 +48,8 @@ body {
 
 .App-title {
   font-size: 1.5em;
+  color: #eee;
+  margin: 0 auto;
 }
 
 .App-intro {
@@ -65,12 +67,14 @@ body {
   background: transparent;
   text-transform: capitalize;
   font-size: 0.8rem !important;
-  color: var(--mainBlack);
-  border-radius: 0 !important;
-  border: 0.1rem solid var(--mainDark) !important;
+  color: var(--mainDark);
+  border-radius: 10px !important;
+  border: none !important;
+  padding: 10px !important;
+  outline: 0 !important;
 }
 .btn-black:hover {
-  background: var(--mainDark) !important;
+  background: #330033 !important;
   color: var(--mainWhite) !important;
 }
 .cart-icon {
